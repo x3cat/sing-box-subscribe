@@ -1,0 +1,717 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "timestamp": true
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "0.0.0.0:9090",
+      "external_ui": "ui",
+      "external_ui_download_url": "https://ghproxy.net/https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip",
+      "external_ui_download_detour": "直连",
+      "secret": "",
+      "default_mode": "rule"
+    },
+    "cache_file": {
+      "enabled": true,
+      "store_rdrc": true
+    }
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "Cloudflare_DoH",
+        "address": "https://cloudflare-dns.com/dns-query",
+        "address_resolver": "Ali_DNS",
+        "detour": "默认出站"
+      },
+      {
+        "tag": "Ali_DoH",
+        "address": "https://dns.alidns.com/dns-query",
+        "address_resolver": "Ali_DNS",
+        "detour": "直连"
+      },
+      {
+        "tag": "Tencent_DoH",
+        "address": "https://doh.pub/dns-query",
+        "address_resolver": "Ali_DNS",
+        "detour": "直连"
+      },
+      {
+        "tag": "Ali_DNS",
+        "address": "223.5.5.5",
+        "detour": "直连"
+      },
+      {
+        "tag": "System_DNS",
+        "address": "default"
+      },
+      {
+        "tag": "Block_DNS",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "rule_set": "geosite_category-ads",
+        "server": "Block_DNS"
+      },
+      {
+        "domain_suffix": "home.myzama.net",
+        "server": "System_DNS"
+      },
+      {
+        "outbound": "any",
+        "server": "Tencent_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
+        "outbound": "any",
+        "server": "Ali_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
+        "clash_mode": "direct",
+        "server": "Tencent_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
+        "clash_mode": "direct",
+        "server": "Ali_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
+        "clash_mode": "global",
+        "server": "Cloudflare_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
+        "rule_set": "geosite_cn",
+        "server": "Tencent_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
+        "rule_set": "geosite_cn",
+        "server": "Ali_DoH",
+        "rewrite_ttl": 3600
+      }
+    ],
+    "final": "Cloudflare_DoH",
+    "strategy": "prefer_ipv6",
+    "disable_cache": false,
+    "disable_expire": false,
+    "independent_cache": false,
+    "reverse_mapping": false
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "address": [
+        "172.18.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": false,
+      "stack": "system",
+      "exclude_package": [
+        "com.android.captiveportallogin",
+        "org.localsend.localsend_app"
+      ],
+      "sniff": true,
+      "sniff_override_destination": false
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "默认出站",
+      "type": "selector",
+      "outbounds": [
+        "日韩台新自动",
+        "单选节点",
+        "国内中转",
+        "香港自动",
+        "日本自动",
+        "韩国自动",
+        "台湾自动",
+        "新加坡自动",
+        "美国自动",
+        "直连"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "日韩台新自动",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇯🇵|日本|JP|Japan|🇰🇷|韩国|KR|South Korea|🇹🇼|台湾|TW|Taiwan|🇸🇬|新加坡|SG|Singapore"
+          ]
+        }
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "单选节点",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "exclude",
+          "keywords": [
+            "剩余|流量|raffic|有效|时间|到期|xpire|地址|网址|官网|自动|最优|最快"
+          ]
+        }
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "Google",
+      "type": "selector",
+      "outbounds": [
+        "默认出站",
+        "日韩台新自动",
+        "单选节点",
+        "香港自动",
+        "日本自动",
+        "韩国自动",
+        "台湾自动",
+        "新加坡自动",
+        "美国自动",
+        "直连"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "Telegram",
+      "type": "selector",
+      "outbounds": [
+        "默认出站",
+        "日韩台新自动",
+        "单选节点",
+        "香港自动",
+        "日本自动",
+        "韩国自动",
+        "台湾自动",
+        "新加坡自动",
+        "美国自动",
+        "直连"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "OpenAI",
+      "type": "selector",
+      "outbounds": [
+        "默认出站",
+        "日韩台新自动",
+        "单选节点",
+        "香港自动",
+        "日本自动",
+        "韩国自动",
+        "台湾自动",
+        "新加坡自动",
+        "美国自动",
+        "直连"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "Spotify",
+      "type": "selector",
+      "outbounds": [
+        "直连",
+        "默认出站",
+        "日韩台新自动",
+        "单选节点",
+        "香港自动",
+        "日本自动",
+        "韩国自动",
+        "台湾自动",
+        "新加坡自动",
+        "美国自动"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "Apple",
+      "type": "selector",
+      "outbounds": [
+        "直连",
+        "默认出站",
+        "日韩台新自动",
+        "单选节点",
+        "香港自动",
+        "日本自动",
+        "韩国自动",
+        "台湾自动",
+        "新加坡自动",
+        "美国自动"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "Microsoft",
+      "type": "selector",
+      "outbounds": [
+        "默认出站",
+        "日韩台新自动",
+        "单选节点",
+        "香港自动",
+        "日本自动",
+        "韩国自动",
+        "台湾自动",
+        "新加坡自动",
+        "美国自动",
+        "直连"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "香港站点",
+      "type": "selector",
+      "outbounds": [
+        "香港单选",
+        "香港自动",
+        "直连"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "国内站点",
+      "type": "selector",
+      "outbounds": [
+        "直连",
+        "国内中转"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag":"QUIC",
+      "type":"selector",
+      "outbounds":[
+        "默认出站",
+        "屏蔽",
+        "直连"
+      ]
+    },
+    {
+      "tag": "国内中转",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "CN|中国|China"
+          ]
+        }
+      ],
+      "url": "http://oss.aliyuncs.com",
+      "interval": "10m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "香港单选",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇭🇰|香港|HK|Hong Kong"
+          ]
+        }
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "香港自动",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇭🇰|香港|HK|Hong Kong"
+          ]
+        }
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "日本自动",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇯🇵|日本|JP|Japan"
+          ]
+        }
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "韩国自动",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇰🇷|韩国|KR|South Korea"
+          ]
+        }
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "台湾自动",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇹🇼|台湾|TW|Taiwan"
+          ]
+        }
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "新加坡自动",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇸🇬|新加坡|SG|Singapore"
+          ]
+        }
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "美国自动",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇺🇸|美国|US|USA|United States"
+          ]
+        }
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "未匹配规则",
+      "type": "selector",
+      "outbounds": [
+        "直连",
+        "国内中转",
+        "默认出站"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "直连",
+      "type": "direct"
+    },
+    {
+      "tag": "屏蔽",
+      "type": "block"
+    },
+    {
+      "tag": "内部 DNS",
+      "type": "dns"
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "override_android_vpn": true,
+    "final": "默认出站",
+    "rules": [
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
+        "outbound": "内部 DNS"
+      },
+      {
+        "rule_set": "geosite_category-ads",
+        "outbound": "屏蔽"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "直连"
+      },
+      {
+        "process_name": [
+          "localsend",
+          "localsend_app.exe"
+        ],
+        "outbound": "直连"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "直连"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "默认出站"
+      },
+      {
+        "domain_suffix": [
+          "myzama.net"
+        ],
+        "outbound": "直连"
+      },
+      {
+        "protocol": "bittorrent",
+        "outbound": "直连"
+      },
+      {
+	      "rule_set": [
+          "geoip_google",
+          "geosite_google",
+          "geosite_spotify"
+        ],
+        "protocol": "quic",
+        "outbound": "QUIC"
+      },
+      {
+        "rule_set": [
+          "geoip_google",
+          "geosite_google"
+        ],
+        "outbound": "Google"
+      },
+      {
+        "rule_set": [
+          "geoip_telegram",
+          "geosite_telegram"
+        ],
+        "outbound": "Telegram"
+      },
+      {
+        "rule_set": "geosite_openai",
+        "outbound": "OpenAI"
+      },
+      {
+        "rule_set": "geosite_spotify",
+        "outbound": "Spotify"
+      },
+      {
+        "rule_set": "geosite_apple",
+        "outbound": "Apple"
+      },
+      {
+        "rule_set": "geosite_microsoft",
+        "outbound": "Microsoft"
+      },
+      {
+        "rule_set": "geoip_hk",
+        "outbound": "香港站点"
+      },
+      {
+        "domain_suffix": "hk",
+        "outbound": "香港站点"
+      },
+      {
+        "rule_set": "geosite_geolocation-!cn",
+        "outbound": "默认出站"
+      },
+      {
+        "rule_set": [
+          "geoip_cn",
+          "geosite_cn"
+        ],
+        "outbound": "国内站点"
+      },
+      {
+        "outbound": "未匹配规则"
+      }
+    ],
+    "rule_set": [
+      {
+        "tag": "geosite_category-ads",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-ads.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_category-games@cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-games@cn.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_category-games",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-games.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geoip_hk",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/hk.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geoip_google",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/google.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_google",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/google.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geoip_telegram",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/telegram.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_telegram",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/telegram.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_spotify",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/spotify.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_openai",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/openai.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_apple",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/apple.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_microsoft",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/microsoft.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_geolocation-!cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/geolocation-!cn.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geoip_cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cn.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/cn.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      }
+    ]
+  }
+}
