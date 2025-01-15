@@ -30,10 +30,6 @@
         "detour": "直连"
       },
       {
-        "tag": "System_DNS",
-        "address": "default"
-      },
-      {
         "tag": "Block_DNS",
         "address": "rcode://success"
       }
@@ -42,10 +38,6 @@
       {
         "rule_set": "geosite_category-ads",
         "server": "Block_DNS"
-      },
-      {
-        "domain_suffix": "home.myzama.net",
-        "server": "System_DNS"
       },
       {
         "outbound": "any",
