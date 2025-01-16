@@ -24,7 +24,7 @@
         "tag": "Cloudflare_DoH",
         "address": "https://cloudflare-dns.com/dns-query",
         "address_resolver": "Ali_DNS",
-        "detour": "分区自动"
+        "detour": "默认出站"
       },
       {
         "tag": "Ali_DoH",
@@ -38,10 +38,6 @@
         "detour": "直连"
       },
       {
-        "tag": "System_DNS",
-        "address": "default"
-      },
-      {
         "tag": "Block_DNS",
         "address": "rcode://success"
       }
@@ -52,7 +48,7 @@
         "server": "Block_DNS"
       },
       {
-        "domain_suffix": ".myzama.net",
+        "domain_suffix": ".home.myzama.net",
         "server": "System_DNS"
       },
       {
@@ -107,10 +103,9 @@
   ],
   "outbounds": [
     {
-      "tag": "分区自动",
+      "tag": "默认出站",
       "type": "selector",
       "outbounds": [
-        "日韩台新自动",
         "Proxy",
         "国内中转",
         "香港自动",
@@ -121,25 +116,6 @@
         "美国自动",
         "直连"
       ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "日韩台新自动",
-      "type": "urltest",
-      "outbounds": [
-        "{all}"
-      ],
-      "filter": [
-        {
-          "action": "include",
-          "keywords": [
-            "🇯🇵|日本|JP|Japan|🇰🇷|韩国|KR|South Korea|🇹🇼|台湾|TW|Taiwan|🇸🇬|新加坡|SG|Singapore"
-          ]
-        }
-      ],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 50,
       "interrupt_exist_connections": true
     },
     {
@@ -162,15 +138,14 @@
       "tag": "Google",
       "type": "selector",
       "outbounds": [
-        "分区自动",
-        "日韩台新自动",
-        "Proxy",
+        "默认出站",
         "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
         "美国自动",
+        "Proxy",
         "直连"
       ],
       "interrupt_exist_connections": true
@@ -179,15 +154,14 @@
       "tag": "Telegram",
       "type": "selector",
       "outbounds": [
-        "分区自动",
-        "日韩台新自动",
-        "Proxy",
+        "默认出站",
         "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
         "美国自动",
+        "Proxy",
         "直连"
       ],
       "interrupt_exist_connections": true
@@ -196,15 +170,30 @@
       "tag": "OpenAI",
       "type": "selector",
       "outbounds": [
-        "分区自动",
-        "日韩台新自动",
-        "Proxy",
+        "默认出站",
         "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
         "美国自动",
+        "Proxy",
+        "直连"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "Microsoft",
+      "type": "selector",
+      "outbounds": [
+        "默认出站",
+        "香港自动",
+        "日本自动",
+        "韩国自动",
+        "台湾自动",
+        "新加坡自动",
+        "美国自动",
+        "Proxy",
         "直连"
       ],
       "interrupt_exist_connections": true
@@ -214,15 +203,14 @@
       "type": "selector",
       "outbounds": [
         "直连",
-        "分区自动",
-        "日韩台新自动",
-        "Proxy",
+        "默认出站",
         "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
-        "美国自动"
+        "美国自动",
+        "Proxy"
       ],
       "interrupt_exist_connections": true
     },
@@ -231,32 +219,14 @@
       "type": "selector",
       "outbounds": [
         "直连",
-        "分区自动",
-        "日韩台新自动",
-        "Proxy",
-        "香港自动",
-        "日本自动",
-        "韩国自动",
-        "台湾自动",
-        "新加坡自动",
-        "美国自动"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "Microsoft",
-      "type": "selector",
-      "outbounds": [
-        "分区自动",
-        "日韩台新自动",
-        "Proxy",
+        "默认出站",
         "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
         "美国自动",
-        "直连"
+        "Proxy"
       ],
       "interrupt_exist_connections": true
     },
@@ -283,9 +253,9 @@
       "tag":"QUIC",
       "type":"selector",
       "outbounds":[
-        "分区自动",
+        "直连",
         "屏蔽",
-        "直连"
+        "默认出站"
       ]
     },
     {
@@ -443,7 +413,7 @@
       "outbounds": [
         "直连",
         "国内中转",
-        "分区自动"
+        "默认出站"
       ],
       "interrupt_exist_connections": true
     },
@@ -463,7 +433,7 @@
   "route": {
     "auto_detect_interface": true,
     "override_android_vpn": true,
-    "final": "分区自动",
+    "final": "默认出站",
     "rules": [
       {
         "type": "logical",
@@ -492,7 +462,7 @@
       },
       {
         "clash_mode": "global",
-        "outbound": "分区自动"
+        "outbound": "默认出站"
       },
       {
         "domain_suffix": [
@@ -538,6 +508,10 @@
         "outbound": "OpenAI"
       },
       {
+        "rule_set": "geosite_microsoft",
+        "outbound": "Microsoft"
+      },
+      {
         "rule_set": "geosite_spotify",
         "outbound": "Spotify"
       },
@@ -546,20 +520,16 @@
         "outbound": "Apple"
       },
       {
-        "rule_set": "geosite_microsoft",
-        "outbound": "Microsoft"
-      },
-      {
         "rule_set": "geoip_hk",
         "outbound": "香港站点"
       },
       {
-        "domain_suffix": "hk",
+        "domain_suffix": ".hk",
         "outbound": "香港站点"
       },
       {
         "rule_set": "geosite_geolocation-!cn",
-        "outbound": "分区自动"
+        "outbound": "默认出站"
       },
       {
         "rule_set": [
