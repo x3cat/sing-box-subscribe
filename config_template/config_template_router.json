@@ -33,8 +33,19 @@
         "detour": "直连"
       },
       {
+        "tag": "Tencent_DoH",
+        "address": "https:///doh.pub/dns-query",
+        "address_resolver": "Tencent_DNS",
+        "detour": "直连"
+      },
+      {
         "tag": "Ali_DNS",
         "address": "223.5.5.5",
+        "detour": "直连"
+      },
+      {
+        "tag": "Tencent_DNS",
+        "address": "119.29.29.29",
         "detour": "直连"
       },
       {
@@ -53,8 +64,18 @@
         "rewrite_ttl": 3600
       },
       {
+        "outbound": "any",
+        "server": "Tencent_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
         "clash_mode": "direct",
         "server": "Ali_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
+        "clash_mode": "direct",
+        "server": "Tencent_DoH",
         "rewrite_ttl": 3600
       },
       {
@@ -65,6 +86,11 @@
       {
         "rule_set": "geosite_cn",
         "server": "Ali_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
+        "rule_set": "geosite_cn",
+        "server": "Tencent_DoH",
         "rewrite_ttl": 3600
       }
     ],
