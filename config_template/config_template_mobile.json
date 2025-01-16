@@ -93,10 +93,6 @@
       "strict_route": true,
       "endpoint_independent_nat": false,
       "stack": "system",
-      "exclude_package": [
-        "com.android.captiveportallogin",
-        "org.localsend.localsend_app"
-      ],
       "sniff": true,
       "sniff_override_destination": false
     }
@@ -480,13 +476,6 @@
       },
       {
         "ip_is_private": true,
-        "outbound": "直连"
-      },
-      {
-        "process_name": [
-          "localsend",
-          "localsend_app.exe"
-        ],
         "outbound": "直连"
       },
       {
