@@ -24,7 +24,7 @@
         "tag": "Cloudflare_DoH",
         "address": "https://cloudflare-dns.com/dns-query",
         "address_resolver": "Ali_DNS",
-        "detour": "默认出站"
+        "detour": "分区自动"
       },
       {
         "tag": "Ali_DoH",
@@ -107,11 +107,11 @@
   ],
   "outbounds": [
     {
-      "tag": "默认出站",
+      "tag": "分区自动",
       "type": "selector",
       "outbounds": [
         "日韩台新自动",
-        "单选节点",
+        "Proxy",
         "国内中转",
         "香港自动",
         "日本自动",
@@ -143,7 +143,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "单选节点",
+      "tag": "Proxy",
       "type": "selector",
       "outbounds": [
         "{all}"
@@ -162,9 +162,9 @@
       "tag": "Google",
       "type": "selector",
       "outbounds": [
-        "默认出站",
+        "分区自动",
         "日韩台新自动",
-        "单选节点",
+        "Proxy",
         "香港自动",
         "日本自动",
         "韩国自动",
@@ -179,9 +179,9 @@
       "tag": "Telegram",
       "type": "selector",
       "outbounds": [
-        "默认出站",
+        "分区自动",
         "日韩台新自动",
-        "单选节点",
+        "Proxy",
         "香港自动",
         "日本自动",
         "韩国自动",
@@ -196,9 +196,9 @@
       "tag": "OpenAI",
       "type": "selector",
       "outbounds": [
-        "默认出站",
+        "分区自动",
         "日韩台新自动",
-        "单选节点",
+        "Proxy",
         "香港自动",
         "日本自动",
         "韩国自动",
@@ -214,9 +214,9 @@
       "type": "selector",
       "outbounds": [
         "直连",
-        "默认出站",
+        "分区自动",
         "日韩台新自动",
-        "单选节点",
+        "Proxy",
         "香港自动",
         "日本自动",
         "韩国自动",
@@ -231,9 +231,9 @@
       "type": "selector",
       "outbounds": [
         "直连",
-        "默认出站",
+        "分区自动",
         "日韩台新自动",
-        "单选节点",
+        "Proxy",
         "香港自动",
         "日本自动",
         "韩国自动",
@@ -247,9 +247,9 @@
       "tag": "Microsoft",
       "type": "selector",
       "outbounds": [
-        "默认出站",
+        "分区自动",
         "日韩台新自动",
-        "单选节点",
+        "Proxy",
         "香港自动",
         "日本自动",
         "韩国自动",
@@ -283,7 +283,7 @@
       "tag":"QUIC",
       "type":"selector",
       "outbounds":[
-        "默认出站",
+        "分区自动",
         "屏蔽",
         "直连"
       ]
@@ -443,7 +443,7 @@
       "outbounds": [
         "直连",
         "国内中转",
-        "默认出站"
+        "分区自动"
       ],
       "interrupt_exist_connections": true
     },
@@ -463,7 +463,7 @@
   "route": {
     "auto_detect_interface": true,
     "override_android_vpn": true,
-    "final": "默认出站",
+    "final": "分区自动",
     "rules": [
       {
         "type": "logical",
@@ -492,7 +492,7 @@
       },
       {
         "clash_mode": "global",
-        "outbound": "默认出站"
+        "outbound": "分区自动"
       },
       {
         "domain_suffix": [
@@ -559,7 +559,7 @@
       },
       {
         "rule_set": "geosite_geolocation-!cn",
-        "outbound": "默认出站"
+        "outbound": "分区自动"
       },
       {
         "rule_set": [
