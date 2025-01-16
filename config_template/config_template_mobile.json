@@ -19,12 +19,6 @@
         "detour": "直连"
       },
       {
-        "tag": "Tencent_DoH",
-        "address": "https://doh.pub/dns-query",
-        "address_resolver": "Ali_DNS",
-        "detour": "直连"
-      },
-      {
         "tag": "Ali_DNS",
         "address": "223.5.5.5",
         "detour": "直连"
@@ -41,17 +35,7 @@
       },
       {
         "outbound": "any",
-        "server": "Tencent_DoH",
-        "rewrite_ttl": 3600
-      },
-      {
-        "outbound": "any",
         "server": "Ali_DoH",
-        "rewrite_ttl": 3600
-      },
-      {
-        "clash_mode": "direct",
-        "server": "Tencent_DoH",
         "rewrite_ttl": 3600
       },
       {
@@ -62,11 +46,6 @@
       {
         "clash_mode": "global",
         "server": "Cloudflare_DoH",
-        "rewrite_ttl": 3600
-      },
-      {
-        "rule_set": "geosite_cn",
-        "server": "Tencent_DoH",
         "rewrite_ttl": 3600
       },
       {
@@ -95,6 +74,13 @@
       "stack": "system",
       "sniff": true,
       "sniff_override_destination": false
+    },
+    {
+      "type": "mixed",
+      "listen": "::",
+      "listen_port": 2080,
+      "sniff": true,
+      "sniff_override_destination": false
     }
   ],
   "outbounds": [
@@ -102,9 +88,9 @@
       "tag": "默认出站",
       "type": "selector",
       "outbounds": [
-        "日韩台新自动",
-        "单选节点",
+        "Proxy",
         "国内中转",
+        "全自动",
         "香港自动",
         "日本自动",
         "韩国自动",
@@ -116,26 +102,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "日韩台新自动",
-      "type": "urltest",
-      "outbounds": [
-        "{all}"
-      ],
-      "filter": [
-        {
-          "action": "include",
-          "keywords": [
-            "🇯🇵|日本|JP|Japan|🇰🇷|韩国|KR|South Korea|🇹🇼|台湾|TW|Taiwan|🇸🇬|新加坡|SG|Singapore"
-          ]
-        }
-      ],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 50,
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "单选节点",
+      "tag": "Proxy",
       "type": "selector",
       "outbounds": [
         "{all}"
@@ -151,18 +118,36 @@
       "interrupt_exist_connections": true
     },
     {
+      "tag": "全自动",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "exclude",
+          "keywords": [
+            "剩余|流量|raffic|有效|时间|到期|xpire|地址|网址|官网|自动|最优|最快"
+          ]
+        }
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true
+    },
+    {
       "tag": "Google",
       "type": "selector",
       "outbounds": [
         "默认出站",
-        "日韩台新自动",
-        "单选节点",
         "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
         "美国自动",
+        "Proxy",
         "直连"
       ],
       "interrupt_exist_connections": true
@@ -172,14 +157,13 @@
       "type": "selector",
       "outbounds": [
         "默认出站",
-        "日韩台新自动",
-        "单选节点",
         "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
         "美国自动",
+        "Proxy",
         "直连"
       ],
       "interrupt_exist_connections": true
@@ -189,14 +173,29 @@
       "type": "selector",
       "outbounds": [
         "默认出站",
-        "日韩台新自动",
-        "单选节点",
         "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
         "美国自动",
+        "Proxy",
+        "直连"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "Microsoft",
+      "type": "selector",
+      "outbounds": [
+        "默认出站",
+        "香港自动",
+        "日本自动",
+        "韩国自动",
+        "台湾自动",
+        "新加坡自动",
+        "美国自动",
+        "Proxy",
         "直连"
       ],
       "interrupt_exist_connections": true
@@ -207,14 +206,13 @@
       "outbounds": [
         "直连",
         "默认出站",
-        "日韩台新自动",
-        "单选节点",
         "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
-        "美国自动"
+        "美国自动",
+        "Proxy"
       ],
       "interrupt_exist_connections": true
     },
@@ -224,31 +222,13 @@
       "outbounds": [
         "直连",
         "默认出站",
-        "日韩台新自动",
-        "单选节点",
-        "香港自动",
-        "日本自动",
-        "韩国自动",
-        "台湾自动",
-        "新加坡自动",
-        "美国自动"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "Microsoft",
-      "type": "selector",
-      "outbounds": [
-        "默认出站",
-        "日韩台新自动",
-        "单选节点",
         "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
         "美国自动",
-        "直连"
+        "Proxy"
       ],
       "interrupt_exist_connections": true
     },
@@ -275,9 +255,9 @@
       "tag":"QUIC",
       "type":"selector",
       "outbounds":[
-        "默认出站",
+        "直连",
         "屏蔽",
-        "直连"
+        "默认出站"
       ]
     },
     {
@@ -524,6 +504,10 @@
         "outbound": "OpenAI"
       },
       {
+        "rule_set": "geosite_microsoft",
+        "outbound": "Microsoft"
+      },
+      {
         "rule_set": "geosite_spotify",
         "outbound": "Spotify"
       },
@@ -532,15 +516,11 @@
         "outbound": "Apple"
       },
       {
-        "rule_set": "geosite_microsoft",
-        "outbound": "Microsoft"
-      },
-      {
         "rule_set": "geoip_hk",
         "outbound": "香港站点"
       },
       {
-        "domain_suffix": "hk",
+        "domain_suffix": ".hk",
         "outbound": "香港站点"
       },
       {
