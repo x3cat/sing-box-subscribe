@@ -52,7 +52,7 @@
         "server": "Block_DNS"
       },
       {
-        "domain_suffix": "home.myzama.net",
+        "domain_suffix": ".myzama.net",
         "server": "System_DNS"
       },
       {
@@ -496,7 +496,7 @@
       },
       {
         "domain_suffix": [
-          "myzama.net"
+          ".myzama.net"
         ],
         "outbound": "直连"
       },

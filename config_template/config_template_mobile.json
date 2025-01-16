@@ -488,7 +488,7 @@
       },
       {
         "domain_suffix": [
-          "myzama.net"
+          ".myzama.net"
         ],
         "outbound": "直连"
       },
