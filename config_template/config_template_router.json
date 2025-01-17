@@ -523,6 +523,13 @@
         "outbound": "香港自动"
       },
       {
+        "rule_set": [
+          "geosite_openai",
+          "geosite_google-gemini"
+        ],
+        "outbound": "AI"
+      },
+      {
 	      "rule_set": [
           "geoip_google",
           "geosite_google",
@@ -544,13 +551,6 @@
           "geosite_telegram"
         ],
         "outbound": "Telegram"
-      },
-      {
-        "rule_set": [
-          "geosite_openai",
-          "geosite_google-gemini"
-        ],
-        "outbound": "AI"
       },
       {
         "rule_set": "geosite_microsoft",
