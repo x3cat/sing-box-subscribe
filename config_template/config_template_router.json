@@ -209,7 +209,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "OpenAI",
+      "tag": "AI",
       "type": "selector",
       "outbounds": [
         "默认出站",
@@ -546,8 +546,11 @@
         "outbound": "Telegram"
       },
       {
-        "rule_set": "geosite_openai",
-        "outbound": "OpenAI"
+        "rule_set": [
+          "geosite_openai",
+          "geosite_google-gemini"
+        ],
+        "outbound": "AI"
       },
       {
         "rule_set": "geosite_microsoft",
@@ -630,6 +633,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/google.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_google-gemini",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/google-gemini.srs",
         "download_detour": "直连",
         "update_interval": "3d"
       },
