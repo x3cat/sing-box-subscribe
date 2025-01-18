@@ -567,7 +567,7 @@
       },
       {
         "rule_set": "geoip_hk",
-        "outbound": "香港站点"
+        "outbound": "香港手动"
       },
       {
         "domain_suffix": ".hk",
