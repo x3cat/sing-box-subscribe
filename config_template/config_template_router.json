@@ -278,7 +278,7 @@
       "outbounds": [
         "香港单选",
         "香港自动",
-        "默认出站",
+        "Proxy",
         "直连"
       ],
       "interrupt_exist_connections": true
