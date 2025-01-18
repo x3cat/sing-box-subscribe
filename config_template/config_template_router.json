@@ -131,7 +131,7 @@
         "Proxy",
         "国内中转",
         "全自动",
-        "香港自动",
+        "香港手动",
         "日本自动",
         "韩国自动",
         "台湾自动",
@@ -177,11 +177,27 @@
       "interrupt_exist_connections": true
     },
     {
+      "tag": "AI",
+      "type": "selector",
+      "outbounds": [
+        "默认出站",
+        "香港手动",
+        "日本自动",
+        "韩国自动",
+        "台湾自动",
+        "新加坡自动",
+        "美国自动",
+        "Proxy",
+        "直连"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
       "tag": "Google",
       "type": "selector",
       "outbounds": [
         "默认出站",
-        "香港自动",
+        "香港手动",
         "日本自动",
         "韩国自动",
         "台湾自动",
@@ -197,23 +213,7 @@
       "type": "selector",
       "outbounds": [
         "默认出站",
-        "香港自动",
-        "日本自动",
-        "韩国自动",
-        "台湾自动",
-        "新加坡自动",
-        "美国自动",
-        "Proxy",
-        "直连"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "AI",
-      "type": "selector",
-      "outbounds": [
-        "默认出站",
-        "香港自动",
+        "香港手动",
         "日本自动",
         "韩国自动",
         "台湾自动",
@@ -229,7 +229,7 @@
       "type": "selector",
       "outbounds": [
         "默认出站",
-        "香港自动",
+        "香港手动",
         "日本自动",
         "韩国自动",
         "台湾自动",
@@ -246,7 +246,7 @@
       "outbounds": [
         "直连",
         "默认出站",
-        "香港自动",
+        "香港手动",
         "日本自动",
         "韩国自动",
         "台湾自动",
@@ -262,7 +262,7 @@
       "outbounds": [
         "直连",
         "默认出站",
-        "香港自动",
+        "香港手动",
         "日本自动",
         "韩国自动",
         "台湾自动",
@@ -273,11 +273,12 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "香港站点",
+      "tag": "香港手动",
       "type": "selector",
       "outbounds": [
         "香港单选",
         "香港自动",
+        "默认出站",
         "直连"
       ],
       "interrupt_exist_connections": true
@@ -468,7 +469,7 @@
       "type": "block"
     },
     {
-      "tag": "内部 DNS",
+      "tag": "DNS-OUT",
       "type": "dns"
     }
   ],
@@ -488,7 +489,7 @@
             "port": 53
           }
         ],
-        "outbound": "内部 DNS"
+        "outbound": "DNS-OUT"
       },
       {
         "rule_set": "geosite_category-ads",
@@ -520,7 +521,7 @@
         "source_ip_cidr": [
           "192.168.101.206"
         ],
-        "outbound": "香港自动"
+        "outbound": "香港手动"
       },
       {
         "rule_set": [
@@ -570,7 +571,7 @@
       },
       {
         "domain_suffix": ".hk",
-        "outbound": "香港站点"
+        "outbound": "香港手动"
       },
       {
         "rule_set": "geosite_geolocation-!cn",
