@@ -172,7 +172,7 @@
           ]
         }
       ],
-      "url": "https://www.akamai.com/favicon.ico",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "10m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -352,7 +352,7 @@
           ]
         }
       ],
-      "url": "https://www.akamai.com/favicon.ico",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "10m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -371,7 +371,7 @@
           ]
         }
       ],
-      "url": "https://www.akamai.com/favicon.ico",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "10m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -390,7 +390,7 @@
           ]
         }
       ],
-      "url": "https://www.akamai.com/favicon.ico",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "10m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -409,7 +409,7 @@
           ]
         }
       ],
-      "url": "https://www.akamai.com/favicon.ico",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "10m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -428,7 +428,7 @@
           ]
         }
       ],
-      "url": "https://www.akamai.com/favicon.ico",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "10m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -447,7 +447,7 @@
           ]
         }
       ],
-      "url": "https://www.akamai.com/favicon.ico",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "10m",
       "tolerance": 50,
       "interrupt_exist_connections": true
