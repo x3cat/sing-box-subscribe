@@ -129,14 +129,15 @@
       "type": "selector",
       "outbounds": [
         "Proxy",
-        "国内中转",
         "全自动",
         "香港手动",
+        "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
         "美国自动",
+        "国内中转",
         "直连"
       ],
       "interrupt_exist_connections": true
@@ -182,12 +183,12 @@
       "outbounds": [
         "默认出站",
         "香港手动",
+        "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
         "美国自动",
-        "Proxy",
         "直连"
       ],
       "interrupt_exist_connections": true
@@ -198,12 +199,12 @@
       "outbounds": [
         "默认出站",
         "香港手动",
+        "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
         "美国自动",
-        "Proxy",
         "直连"
       ],
       "interrupt_exist_connections": true
@@ -214,12 +215,12 @@
       "outbounds": [
         "默认出站",
         "香港手动",
+        "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
         "美国自动",
-        "Proxy",
         "直连"
       ],
       "interrupt_exist_connections": true
@@ -230,12 +231,12 @@
       "outbounds": [
         "默认出站",
         "香港手动",
+        "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
         "美国自动",
-        "Proxy",
         "直连"
       ],
       "interrupt_exist_connections": true
@@ -247,12 +248,12 @@
         "直连",
         "默认出站",
         "香港手动",
+        "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
-        "美国自动",
-        "Proxy"
+        "美国自动"
       ],
       "interrupt_exist_connections": true
     },
@@ -263,23 +264,12 @@
         "直连",
         "默认出站",
         "香港手动",
+        "香港自动",
         "日本自动",
         "韩国自动",
         "台湾自动",
         "新加坡自动",
-        "美国自动",
-        "Proxy"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "香港手动",
-      "type": "selector",
-      "outbounds": [
-        "香港单选",
-        "香港自动",
-        "Proxy",
-        "直连"
+        "美国自动"
       ],
       "interrupt_exist_connections": true
     },
@@ -288,7 +278,19 @@
       "type": "selector",
       "outbounds": [
         "直连",
-        "国内中转"
+        "默认出站",
+        "香港手动"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "香港站点",
+      "type": "selector",
+      "outbounds": [
+        "默认出站",
+        "香港手动",
+        "香港自动",
+        "直连"
       ],
       "interrupt_exist_connections": true
     },
@@ -321,7 +323,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "香港单选",
+      "tag": "香港手动",
       "type": "selector",
       "outbounds": [
         "{all}"
@@ -455,7 +457,6 @@
       "type": "selector",
       "outbounds": [
         "直连",
-        "国内中转",
         "默认出站"
       ],
       "interrupt_exist_connections": true
@@ -531,11 +532,6 @@
         "outbound": "AI"
       },
       {
-	      "rule_set": [
-          "geoip_google",
-          "geosite_google",
-          "geosite_spotify"
-        ],
         "protocol": "quic",
         "outbound": "QUIC"
       },
@@ -567,11 +563,11 @@
       },
       {
         "rule_set": "geoip_hk",
-        "outbound": "香港手动"
+        "outbound": "香港站点"
       },
       {
         "domain_suffix": ".hk",
-        "outbound": "香港手动"
+        "outbound": "香港站点"
       },
       {
         "rule_set": "geosite_geolocation-!cn",
