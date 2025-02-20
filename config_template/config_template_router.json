@@ -1,6 +1,5 @@
 {
   "log": {
-    "disabled": false,
     "level": "info",
     "timestamp": true
   },
@@ -9,7 +8,7 @@
       "external_controller": "0.0.0.0:9090",
       "external_ui": "ui",
       "external_ui_download_url": "https://ghproxy.net/https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip",
-      "external_ui_download_detour": "直连",
+      "external_ui_download_detour": "Direct",
       "secret": "!II7JK7Gs4gq^y5VZHjm",
       "default_mode": "rule"
     },
@@ -24,29 +23,29 @@
         "tag": "Cloudflare_DoH",
         "address": "https://cloudflare-dns.com/dns-query",
         "address_resolver": "Ali_DNS",
-        "detour": "默认出站"
+        "detour": "Default_Outbound"
       },
       {
         "tag": "Ali_DoH",
         "address": "https://dns.alidns.com/dns-query",
         "address_resolver": "Ali_DNS",
-        "detour": "直连"
+        "detour": "Direct"
       },
       {
         "tag": "Tencent_DoH",
         "address": "https:///doh.pub/dns-query",
         "address_resolver": "Tencent_DNS",
-        "detour": "直连"
+        "detour": "Direct"
       },
       {
         "tag": "Ali_DNS",
         "address": "223.5.5.5",
-        "detour": "直连"
+        "detour": "Direct"
       },
       {
         "tag": "Tencent_DNS",
         "address": "119.29.29.29",
-        "detour": "直连"
+        "detour": "Direct"
       },
       {
         "tag": "Block_DNS",
@@ -125,20 +124,20 @@
   ],
   "outbounds": [
     {
-      "tag": "默认出站",
+      "tag": "Default_Outbound",
       "type": "selector",
       "outbounds": [
         "Proxy",
-        "全自动",
-        "香港手动",
-        "香港自动",
-        "日本自动",
-        "韩国自动",
-        "台湾自动",
-        "新加坡自动",
-        "美国自动",
-        "国内中转",
-        "直连"
+        "Proxy_Auto",
+        "HK_Selector",
+        "HK_Auto",
+        "JP_Auto",
+        "KR_Auto",
+        "TW_Auto",
+        "SG_Auto",
+        "US_Auto",
+        "CN_Forward",
+        "Direct"
       ],
       "interrupt_exist_connections": true
     },
@@ -159,7 +158,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "全自动",
+      "tag": "Proxy_Auto",
       "type": "urltest",
       "outbounds": [
         "{all}"
@@ -181,15 +180,15 @@
       "tag": "AI",
       "type": "selector",
       "outbounds": [
-        "默认出站",
-        "香港手动",
-        "香港自动",
-        "日本自动",
-        "韩国自动",
-        "台湾自动",
-        "新加坡自动",
-        "美国自动",
-        "直连"
+        "Default_Outbound",
+        "HK_Selector",
+        "HK_Auto",
+        "JP_Auto",
+        "KR_Auto",
+        "TW_Auto",
+        "SG_Auto",
+        "US_Auto",
+        "Direct"
       ],
       "interrupt_exist_connections": true
     },
@@ -197,15 +196,15 @@
       "tag": "Google",
       "type": "selector",
       "outbounds": [
-        "默认出站",
-        "香港手动",
-        "香港自动",
-        "日本自动",
-        "韩国自动",
-        "台湾自动",
-        "新加坡自动",
-        "美国自动",
-        "直连"
+        "Default_Outbound",
+        "HK_Selector",
+        "HK_Auto",
+        "JP_Auto",
+        "KR_Auto",
+        "TW_Auto",
+        "SG_Auto",
+        "US_Auto",
+        "Direct"
       ],
       "interrupt_exist_connections": true
     },
@@ -213,15 +212,15 @@
       "tag": "Telegram",
       "type": "selector",
       "outbounds": [
-        "默认出站",
-        "香港手动",
-        "香港自动",
-        "日本自动",
-        "韩国自动",
-        "台湾自动",
-        "新加坡自动",
-        "美国自动",
-        "直连"
+        "Default_Outbound",
+        "HK_Selector",
+        "HK_Auto",
+        "JP_Auto",
+        "KR_Auto",
+        "TW_Auto",
+        "SG_Auto",
+        "US_Auto",
+        "Direct"
       ],
       "interrupt_exist_connections": true
     },
@@ -229,15 +228,15 @@
       "tag": "Microsoft",
       "type": "selector",
       "outbounds": [
-        "默认出站",
-        "香港手动",
-        "香港自动",
-        "日本自动",
-        "韩国自动",
-        "台湾自动",
-        "新加坡自动",
-        "美国自动",
-        "直连"
+        "Default_Outbound",
+        "HK_Selector",
+        "HK_Auto",
+        "JP_Auto",
+        "KR_Auto",
+        "TW_Auto",
+        "SG_Auto",
+        "US_Auto",
+        "Direct"
       ],
       "interrupt_exist_connections": true
     },
@@ -245,15 +244,15 @@
       "tag": "Spotify",
       "type": "selector",
       "outbounds": [
-        "直连",
-        "默认出站",
-        "香港手动",
-        "香港自动",
-        "日本自动",
-        "韩国自动",
-        "台湾自动",
-        "新加坡自动",
-        "美国自动"
+        "Direct",
+        "Default_Outbound",
+        "HK_Selector",
+        "HK_Auto",
+        "JP_Auto",
+        "KR_Auto",
+        "TW_Auto",
+        "SG_Auto",
+        "US_Auto"
       ],
       "interrupt_exist_connections": true
     },
@@ -261,36 +260,36 @@
       "tag": "Apple",
       "type": "selector",
       "outbounds": [
-        "直连",
-        "默认出站",
-        "香港手动",
-        "香港自动",
-        "日本自动",
-        "韩国自动",
-        "台湾自动",
-        "新加坡自动",
-        "美国自动"
+        "Direct",
+        "Default_Outbound",
+        "HK_Selector",
+        "HK_Auto",
+        "JP_Auto",
+        "KR_Auto",
+        "TW_Auto",
+        "SG_Auto",
+        "US_Auto"
       ],
       "interrupt_exist_connections": true
     },
     {
-      "tag": "国内站点",
+      "tag": "CN_Sites",
       "type": "selector",
       "outbounds": [
-        "直连",
-        "默认出站",
-        "香港手动"
+        "Direct",
+        "Default_Outbound",
+        "HK_Selector"
       ],
       "interrupt_exist_connections": true
     },
     {
-      "tag": "香港站点",
+      "tag": "HK_Sites",
       "type": "selector",
       "outbounds": [
-        "默认出站",
-        "香港手动",
-        "香港自动",
-        "直连"
+        "Default_Outbound",
+        "HK_Selector",
+        "HK_Auto",
+        "Direct"
       ],
       "interrupt_exist_connections": true
     },
@@ -298,13 +297,13 @@
       "tag":"QUIC",
       "type":"selector",
       "outbounds":[
-        "直连",
-        "屏蔽",
-        "默认出站"
+        "Direct",
+        "Blocked",
+        "Default_Outbound"
       ]
     },
     {
-      "tag": "国内中转",
+      "tag": "CN_Forward",
       "type": "urltest",
       "outbounds": [
         "{all}"
@@ -323,7 +322,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "香港手动",
+      "tag": "HK_Selector",
       "type": "selector",
       "outbounds": [
         "{all}"
@@ -339,7 +338,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "香港自动",
+      "tag": "HK_Auto",
       "type": "urltest",
       "outbounds": [
         "{all}"
@@ -358,7 +357,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "日本自动",
+      "tag": "JP_Auto",
       "type": "urltest",
       "outbounds": [
         "{all}"
@@ -377,7 +376,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "韩国自动",
+      "tag": "KR_Auto",
       "type": "urltest",
       "outbounds": [
         "{all}"
@@ -396,7 +395,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "台湾自动",
+      "tag": "TW_Auto",
       "type": "urltest",
       "outbounds": [
         "{all}"
@@ -415,7 +414,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "新加坡自动",
+      "tag": "SG_Auto",
       "type": "urltest",
       "outbounds": [
         "{all}"
@@ -434,7 +433,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "美国自动",
+      "tag": "US_Auto",
       "type": "urltest",
       "outbounds": [
         "{all}"
@@ -453,20 +452,20 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "未匹配规则",
+      "tag": "No_Match",
       "type": "selector",
       "outbounds": [
-        "直连",
-        "默认出站"
+        "Direct",
+        "Default_Outbound"
       ],
       "interrupt_exist_connections": true
     },
     {
-      "tag": "直连",
+      "tag": "Direct",
       "type": "direct"
     },
     {
-      "tag": "屏蔽",
+      "tag": "Blocked",
       "type": "block"
     },
     {
@@ -477,7 +476,7 @@
   "route": {
     "auto_detect_interface": true,
     "override_android_vpn": true,
-    "final": "默认出站",
+    "final": "Default_Outbound",
     "rules": [
       {
         "type": "logical",
@@ -494,35 +493,35 @@
       },
       {
         "rule_set": "geosite_category-ads",
-        "outbound": "屏蔽"
+        "outbound": "Blocked"
       },
       {
         "ip_is_private": true,
-        "outbound": "直连"
+        "outbound": "Direct"
       },
       {
         "clash_mode": "direct",
-        "outbound": "直连"
+        "outbound": "Direct"
       },
       {
         "clash_mode": "global",
-        "outbound": "默认出站"
+        "outbound": "Default_Outbound"
       },
       {
         "domain_suffix": [
           ".myzama.net"
         ],
-        "outbound": "直连"
+        "outbound": "Direct"
       },
       {
         "protocol": "bittorrent",
-        "outbound": "直连"
+        "outbound": "Direct"
       },
       {
         "source_ip_cidr": [
           "192.168.101.206"
         ],
-        "outbound": "香港手动"
+        "outbound": "HK_Selector"
       },
       {
         "rule_set": [
@@ -563,25 +562,25 @@
       },
       {
         "rule_set": "geoip_hk",
-        "outbound": "香港站点"
+        "outbound": "HK_Sites"
       },
       {
         "domain_suffix": ".hk",
-        "outbound": "香港站点"
+        "outbound": "HK_Sites"
       },
       {
         "rule_set": "geosite_geolocation-!cn",
-        "outbound": "默认出站"
+        "outbound": "Default_Outbound"
       },
       {
         "rule_set": [
           "geoip_cn",
           "geosite_cn"
         ],
-        "outbound": "国内站点"
+        "outbound": "CN_Sites"
       },
       {
-        "outbound": "未匹配规则"
+        "outbound": "No_Match"
       }
     ],
     "rule_set": [
@@ -590,7 +589,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-ads.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -598,7 +597,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-games@cn.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -606,7 +605,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-games.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -614,7 +613,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/hk.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -622,7 +621,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/google.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -630,7 +629,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/google.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -638,7 +637,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/google-gemini.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -646,7 +645,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/telegram.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -654,7 +653,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/telegram.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -662,7 +661,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/spotify.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -670,7 +669,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/openai.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -678,7 +677,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/apple.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -686,7 +685,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/microsoft.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -694,7 +693,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/geolocation-!cn.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -702,7 +701,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cn.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       },
       {
@@ -710,7 +709,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/cn.srs",
-        "download_detour": "直连",
+        "download_detour": "Direct",
         "update_interval": "3d"
       }
     ]
