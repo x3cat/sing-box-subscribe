@@ -190,6 +190,7 @@
         "US_Auto",
         "Direct"
       ],
+      "default": "US_Auto",
       "interrupt_exist_connections": true
     },
     {
@@ -526,6 +527,7 @@
       {
         "rule_set": [
           "geosite_openai",
+          "geosite_xai",
           "geosite_google-gemini"
         ],
         "outbound": "AI"
@@ -669,6 +671,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/openai.srs",
+        "download_detour": "Direct",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_xai",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/xai.srs",
         "download_detour": "Direct",
         "update_interval": "3d"
       },
