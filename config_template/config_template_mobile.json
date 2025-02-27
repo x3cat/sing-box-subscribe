@@ -7,23 +7,30 @@
     "servers": [
       {
         "tag": "Cloudflare_DoH",
-        "type": "https",
-        "server": "cloudflare-dns.com",
+        "address": "https://cloudflare-dns.com/dns-query",
         "address_resolver": "Ali_DNS"
       },
       {
+        "tag": "Ali_DoH",
+        "address": "https://dns.alidns.com/dns-query",
+        "address_resolver": "Ali_DNS"
+      },
+      {
+        "tag": "Tencent_DoH",
+        "address": "https:///doh.pub/dns-query",
+        "address_resolver": "Tencent_DNS"
+      },
+      {
         "tag": "Ali_DNS",
-        "type": "udp",
-        "server": "223.5.5.5"
+        "address": "223.5.5.5"
+      },
+      {
+        "tag": "Tencent_DNS",
+        "address": "119.29.29.29"
       },
       {
         "tag": "Block_DNS",
-        "type": "predefined",
-        "responses": [
-          {
-            "rcode": "success"
-          }
-        ]
+        "address": "rcode://success"
       }
     ],
     "rules": [
@@ -32,17 +39,47 @@
         "server": "Block_DNS"
       },
       {
+        "outbound": "any",
+        "server": "Ali_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
+        "outbound": "any",
+        "server": "Tencent_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
+        "clash_mode": "direct",
+        "server": "Ali_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
+        "clash_mode": "direct",
+        "server": "Tencent_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
         "clash_mode": "global",
         "server": "Cloudflare_DoH",
         "rewrite_ttl": 3600
       },
       {
         "rule_set": "geosite_cn",
-        "server": "Ali_DNS",
+        "server": "Ali_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
+        "rule_set": "geosite_cn",
+        "server": "Tencent_DoH",
+        "rewrite_ttl": 3600
+      },
+      {
+        "rule_set": "geosite_geolocation-!cn",
+        "server": "Cloudflare_DoH",
         "rewrite_ttl": 3600
       }
     ],
-    "final": "Ali_DNS",
+    "final": "Ali_DoH",
     "disable_cache": false,
     "disable_expire": false,
     "independent_cache": false,
@@ -50,7 +87,6 @@
   },
   "inbounds": [
     {
-      "tag": "Tun",
       "type": "tun",
       "address": [
         "172.18.0.1/30",
@@ -59,7 +95,9 @@
       "auto_route": true,
       "strict_route": true,
       "endpoint_independent_nat": false,
-      "stack": "system"
+      "stack": "system",
+      "sniff": true,
+      "sniff_override_destination": false
     }
   ],
   "outbounds": [
@@ -408,6 +446,10 @@
     {
       "tag": "Blocked",
       "type": "block"
+    },
+    {
+      "tag": "DNS-OUT",
+      "type": "dns"
     }
   ],
   "route": {
@@ -416,17 +458,18 @@
     "final": "Default_Outbound",
     "rules": [
       {
-        "action": "sniff"
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
+        "outbound": "DNS-OUT"
       },
-      {
-        "protocol": "dns",
-        "action": "hijack-dns"
-      },
-      {
-        "inbound": "Tun",
-        "action": "sniff",
-        "timeout": "1s"
-      }
       {
         "rule_set": "geosite_category-ads",
         "outbound": "Blocked"
