@@ -44,6 +44,10 @@
         "server": "Block_DNS"
       },
       {
+        "rule_set": "geosite_geolocation-!cn",
+        "server": "Cloudflare_DoH"
+      },
+      {
         "outbound": "any",
         "server": "Ali_DoH"
       },
