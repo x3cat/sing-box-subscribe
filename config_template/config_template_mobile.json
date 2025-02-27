@@ -114,7 +114,6 @@
         "TW_Auto",
         "SG_Auto",
         "US_Auto",
-        "CN_Forward",
         "Direct"
       ],
       "interrupt_exist_connections": true
@@ -280,25 +279,6 @@
         "Blocked",
         "Default_Outbound"
       ]
-    },
-    {
-      "tag": "CN_Forward",
-      "type": "urltest",
-      "outbounds": [
-        "{all}"
-      ],
-      "filter": [
-        {
-          "action": "include",
-          "keywords": [
-            "CN|中国|China"
-          ]
-        }
-      ],
-      "url": "http://oss.aliyuncs.com",
-      "interval": "10m",
-      "tolerance": 50,
-      "interrupt_exist_connections": true
     },
     {
       "tag": "HK_Selector",
