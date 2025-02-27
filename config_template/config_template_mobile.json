@@ -22,7 +22,7 @@
         "server": "localDns"
       },
       {
-        "rule_set": "geosite-cn",
+        "rule_set": "geosite_cn",
         "server": "localDns"
       },   
       {
@@ -34,7 +34,7 @@
         "server": "proxyDns"
       },
       {
-        "rule_set": "geosite-geolocation-!cn",
+        "rule_set": "geosite_geolocation-!cn",
         "server": "proxyDns"
       }
     ],
