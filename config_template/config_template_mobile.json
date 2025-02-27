@@ -38,8 +38,7 @@
         "server": "proxyDns"
       }
     ],
-    "final": "localDns",
-    "strategy": "ipv4_only"
+    "final": "localDns"
   },
   "inbounds": [
     {
