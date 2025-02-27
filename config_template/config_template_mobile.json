@@ -6,39 +6,73 @@
   "dns": {
     "servers": [
       {
-        "tag": "proxyDns",
-        "address": "tls://1.1.1.1",
+        "tag": "Cloudflare_DoH",
+        "address": "https://cloudflare-dns.com/dns-query",
+        "address_resolver": "Ali_DNS",
         "detour": "Default_Outbound"
       },
       {
-        "tag": "localDns",
-        "address": "https://223.5.5.5/dns-query",
+        "tag": "Ali_DoH",
+        "address": "https://dns.alidns.com/dns-query",
+        "address_resolver": "Ali_DNS",
         "detour": "Direct"
+      },
+      {
+        "tag": "Tencent_DoH",
+        "address": "https:///doh.pub/dns-query",
+        "address_resolver": "Tencent_DNS",
+        "detour": "Direct"
+      },
+      {
+        "tag": "Ali_DNS",
+        "address": "223.5.5.5",
+        "detour": "Direct"
+      },
+      {
+        "tag": "Tencent_DNS",
+        "address": "119.29.29.29",
+        "detour": "Direct"
+      },
+      {
+        "tag": "Block_DNS",
+        "address": "rcode://success"
       }
     ],
     "rules": [
       {
-        "outbound": "any",
-        "server": "localDns"
+        "rule_set": "geosite_category-ads",
+        "server": "Block_DNS"
       },
       {
-        "rule_set": "geosite_cn",
-        "server": "localDns"
-      },   
+        "outbound": "any",
+        "server": "Ali_DoH"
+      },
+      {
+        "outbound": "any",
+        "server": "Tencent_DoH"
+      },
       {
         "clash_mode": "direct",
-        "server": "localDns"
+        "server": "Ali_DoH"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "Tencent_DoH"
       },
       {
         "clash_mode": "global",
-        "server": "proxyDns"
+        "server": "Cloudflare_DoH"
       },
       {
-        "rule_set": "geosite_geolocation-!cn",
-        "server": "proxyDns"
+        "rule_set": "geosite_cn",
+        "server": "Ali_DoH"
+      },
+      {
+        "rule_set": "geosite_cn",
+        "server": "Tencent_DoH"
       }
     ],
-    "final": "localDns"
+    "final": "Tencent_DoH"
   },
   "inbounds": [
     {
