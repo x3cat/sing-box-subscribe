@@ -42,7 +42,7 @@
         "rewrite_ttl": 3600
       }
     ],
-    "final": "Ali_DNS,
+    "final": "Ali_DNS",
     "disable_cache": false,
     "disable_expire": false,
     "independent_cache": false,
