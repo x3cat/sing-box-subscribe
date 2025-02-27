@@ -229,7 +229,6 @@
       "type":"selector",
       "outbounds":[
         "Direct",
-        "Blocked",
         "Default_Outbound"
       ]
     },
@@ -377,10 +376,6 @@
       "type": "direct"
     },
     {
-      "tag": "Blocked",
-      "type": "block"
-    },
-    {
       "tag": "DNS-OUT",
       "type": "dns"
     }
@@ -409,7 +404,7 @@
       },
       {
         "rule_set": "geosite_category-ads",
-        "outbound": "Blocked"
+        "action": "reject"
       },
       {
         "ip_is_private": true,
