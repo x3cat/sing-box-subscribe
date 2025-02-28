@@ -462,9 +462,7 @@
       },
       {
         "rule_set": [
-          "geosite_openai",
-          "geosite_xai",
-          "geosite_google-gemini"
+          "geosite_category-ai-chat-!cn"
         ],
         "outbound": "AI"
       },
@@ -599,6 +597,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/spotify.srs",
+        "download_detour": "Direct",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_category-ai-chat-!cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-ai-chat-!cn.srs",
         "download_detour": "Direct",
         "update_interval": "3d"
       },

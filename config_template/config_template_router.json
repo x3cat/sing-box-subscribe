@@ -58,6 +58,10 @@
         "server": "Block_DNS"
       },
       {
+        "rule_set": "geosite_geolocation-!cn",
+        "server": "Cloudflare_DoH"
+      },
+      {
         "outbound": "any",
         "server": "Ali_DoH",
         "rewrite_ttl": 3600
@@ -93,15 +97,11 @@
         "rewrite_ttl": 3600
       }
     ],
-    "final": "Cloudflare_DoH",
-    "strategy": "ipv4_only",
-    "disable_cache": false,
-    "disable_expire": false,
-    "independent_cache": false,
-    "reverse_mapping": false
+    "final": "Cloudflare_DoH"
   },
   "inbounds": [
     {
+      "tag": "tun-in",
       "type": "tun",
       "address": [
         "172.18.0.1/30",
@@ -109,17 +109,13 @@
       ],
       "auto_route": true,
       "strict_route": true,
-      "endpoint_independent_nat": false,
-      "stack": "system",
-      "sniff": true,
-      "sniff_override_destination": false
+      "stack": "system"
     },
     {
+      "tag": "mixed-in",
       "type": "mixed",
       "listen": "::",
-      "listen_port": 2080,
-      "sniff": true,
-      "sniff_override_destination": false
+      "listen_port": 2080
     }
   ],
   "outbounds": [
@@ -136,7 +132,6 @@
         "TW_Auto",
         "SG_Auto",
         "US_Auto",
-        "CN_Forward",
         "Direct"
       ],
       "interrupt_exist_connections": true
@@ -299,28 +294,8 @@
       "type":"selector",
       "outbounds":[
         "Direct",
-        "Blocked",
         "Default_Outbound"
       ]
-    },
-    {
-      "tag": "CN_Forward",
-      "type": "urltest",
-      "outbounds": [
-        "{all}"
-      ],
-      "filter": [
-        {
-          "action": "include",
-          "keywords": [
-            "CN|中国|China"
-          ]
-        }
-      ],
-      "url": "http://oss.aliyuncs.com",
-      "interval": "10m",
-      "tolerance": 50,
-      "interrupt_exist_connections": true
     },
     {
       "tag": "HK_Selector",
@@ -464,14 +439,6 @@
     {
       "tag": "Direct",
       "type": "direct"
-    },
-    {
-      "tag": "Blocked",
-      "type": "block"
-    },
-    {
-      "tag": "DNS-OUT",
-      "type": "dns"
     }
   ],
   "route": {
@@ -479,6 +446,10 @@
     "override_android_vpn": true,
     "final": "Default_Outbound",
     "rules": [
+      {
+        "inbound": ["tun-in", "mixed-in"],
+        "action": "sniff"
+      },
       {
         "type": "logical",
         "mode": "or",
@@ -490,11 +461,11 @@
             "port": 53
           }
         ],
-        "outbound": "DNS-OUT"
+        "action": "hijack-dns"
       },
       {
         "rule_set": "geosite_category-ads",
-        "outbound": "Blocked"
+        "action": "reject"
       },
       {
         "ip_is_private": true,
@@ -526,9 +497,7 @@
       },
       {
         "rule_set": [
-          "geosite_openai",
-          "geosite_xai",
-          "geosite_google-gemini"
+          "geosite_category-ai-chat-!cn"
         ],
         "outbound": "AI"
       },
@@ -663,6 +632,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/spotify.srs",
+        "download_detour": "Direct",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_category-ai-chat-!cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-ai-chat-!cn.srs",
         "download_detour": "Direct",
         "update_interval": "3d"
       },
