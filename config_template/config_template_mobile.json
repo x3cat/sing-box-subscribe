@@ -56,7 +56,7 @@
         "server": "Tencent_DoH"
       }
     ],
-    "final": "Cloudflare_DoH"
+    "final": "Ali_DoH"
   },
   "inbounds": [
     {
