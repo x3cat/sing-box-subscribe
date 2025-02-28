@@ -48,26 +48,6 @@
         "server": "Cloudflare_DoH"
       },
       {
-        "outbound": "any",
-        "server": "Ali_DoH"
-      },
-      {
-        "outbound": "any",
-        "server": "Tencent_DoH"
-      },
-      {
-        "clash_mode": "direct",
-        "server": "Ali_DoH"
-      },
-      {
-        "clash_mode": "direct",
-        "server": "Tencent_DoH"
-      },
-      {
-        "clash_mode": "global",
-        "server": "Cloudflare_DoH"
-      },
-      {
         "rule_set": "geosite_cn",
         "server": "Ali_DoH"
       },
@@ -160,6 +140,14 @@
       "interrupt_exist_connections": true
     },
     {
+      "tag":"QUIC",
+      "type":"selector",
+      "outbounds":[
+        "Direct",
+        "Default_Outbound"
+      ]
+    },
+    {
       "tag": "Google",
       "type": "selector",
       "outbounds": [
@@ -240,16 +228,6 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "CN_Sites",
-      "type": "selector",
-      "outbounds": [
-        "Direct",
-        "Default_Outbound",
-        "HK_Selector"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
       "tag": "HK_Sites",
       "type": "selector",
       "outbounds": [
@@ -261,12 +239,23 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag":"QUIC",
-      "type":"selector",
-      "outbounds":[
+      "tag": "CN_Sites",
+      "type": "selector",
+      "outbounds": [
+        "Direct",
+        "Default_Outbound",
+        "HK_Selector"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "No_Match",
+      "type": "selector",
+      "outbounds": [
         "Direct",
         "Default_Outbound"
-      ]
+      ],
+      "interrupt_exist_connections": true
     },
     {
       "tag": "HK_Selector",
@@ -399,15 +388,6 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "No_Match",
-      "type": "selector",
-      "outbounds": [
-        "Direct",
-        "Default_Outbound"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
       "tag": "Direct",
       "type": "direct"
     }
@@ -443,22 +423,8 @@
         "outbound": "Direct"
       },
       {
-        "clash_mode": "direct",
-        "outbound": "Direct"
-      },
-      {
-        "clash_mode": "global",
-        "outbound": "Default_Outbound"
-      },
-      {
         "protocol": "bittorrent",
         "outbound": "Direct"
-      },
-      {
-        "source_ip_cidr": [
-          "192.168.101.206"
-        ],
-        "outbound": "HK_Selector"
       },
       {
         "rule_set": [
