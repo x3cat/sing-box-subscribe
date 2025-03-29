@@ -46,7 +46,7 @@
       },
       {
         "rule_set": "geosite_cn",
-        "server": "Tencent_DoH"
+        "server": "Tencent_DNS"
       }
     ],
     "final": "Cloudflare_DoH"
