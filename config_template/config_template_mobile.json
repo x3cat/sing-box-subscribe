@@ -29,10 +29,6 @@
       {
         "rule_set": "geosite_geolocation-!cn",
         "server": "Cloudflare_DoH"
-      },
-      {
-        "rule_set": "geosite_cn",
-        "server": "Tencent_DNS"
       }
     ],
     "final": "Tencent_DNS"
