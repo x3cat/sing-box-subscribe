@@ -22,7 +22,7 @@
       {
         "tag": "Cloudflare_DoH",
         "address": "https://cloudflare-dns.com/dns-query",
-        "address_resolver": "Ali_DNS",
+        "address_resolver": "Tencent_DNS",
         "detour": "Default_Outbound"
       },
       {
