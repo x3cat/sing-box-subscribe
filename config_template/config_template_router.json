@@ -49,7 +49,7 @@
         "server": "Tencent_DNS"
       }
     ],
-    "final": "Cloudflare_DoH"
+    "final": "Tencent_DNS"
   },
   "inbounds": [
     {
