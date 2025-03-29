@@ -35,7 +35,7 @@
         "server": "Tencent_DNS"
       }
     ],
-    "final": "Direct"
+    "final": "Tencent_DNS"
   },
   "inbounds": [
     {

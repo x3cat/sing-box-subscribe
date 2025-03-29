@@ -26,23 +26,6 @@
         "detour": "Default_Outbound"
       },
       {
-        "tag": "Ali_DoH",
-        "address": "https://dns.alidns.com/dns-query",
-        "address_resolver": "Ali_DNS",
-        "detour": "Direct"
-      },
-      {
-        "tag": "Tencent_DoH",
-        "address": "https:///doh.pub/dns-query",
-        "address_resolver": "Tencent_DNS",
-        "detour": "Direct"
-      },
-      {
-        "tag": "Ali_DNS",
-        "address": "223.5.5.5",
-        "detour": "Direct"
-      },
-      {
         "tag": "Tencent_DNS",
         "address": "119.29.29.29",
         "detour": "Direct"
@@ -62,39 +45,8 @@
         "server": "Cloudflare_DoH"
       },
       {
-        "outbound": "any",
-        "server": "Ali_DoH",
-        "rewrite_ttl": 3600
-      },
-      {
-        "outbound": "any",
-        "server": "Tencent_DoH",
-        "rewrite_ttl": 3600
-      },
-      {
-        "clash_mode": "direct",
-        "server": "Ali_DoH",
-        "rewrite_ttl": 3600
-      },
-      {
-        "clash_mode": "direct",
-        "server": "Tencent_DoH",
-        "rewrite_ttl": 3600
-      },
-      {
-        "clash_mode": "global",
-        "server": "Cloudflare_DoH",
-        "rewrite_ttl": 3600
-      },
-      {
         "rule_set": "geosite_cn",
-        "server": "Ali_DoH",
-        "rewrite_ttl": 3600
-      },
-      {
-        "rule_set": "geosite_cn",
-        "server": "Tencent_DoH",
-        "rewrite_ttl": 3600
+        "server": "Tencent_DoH"
       }
     ],
     "final": "Cloudflare_DoH"
@@ -125,7 +77,6 @@
       "outbounds": [
         "Proxy",
         "Proxy_Auto",
-        "HK_Selector",
         "HK_Auto",
         "JP_Auto",
         "KR_Auto",
@@ -176,7 +127,6 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
-        "HK_Selector",
         "HK_Auto",
         "JP_Auto",
         "KR_Auto",
@@ -193,23 +143,6 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
-        "HK_Selector",
-        "HK_Auto",
-        "JP_Auto",
-        "KR_Auto",
-        "TW_Auto",
-        "SG_Auto",
-        "US_Auto",
-        "Direct"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "Telegram",
-      "type": "selector",
-      "outbounds": [
-        "Default_Outbound",
-        "HK_Selector",
         "HK_Auto",
         "JP_Auto",
         "KR_Auto",
@@ -225,7 +158,6 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
-        "HK_Selector",
         "HK_Auto",
         "JP_Auto",
         "KR_Auto",
@@ -242,7 +174,6 @@
       "outbounds": [
         "Direct",
         "Default_Outbound",
-        "HK_Selector",
         "HK_Auto",
         "JP_Auto",
         "KR_Auto",
@@ -258,7 +189,6 @@
       "outbounds": [
         "Direct",
         "Default_Outbound",
-        "HK_Selector",
         "HK_Auto",
         "JP_Auto",
         "KR_Auto",
@@ -273,8 +203,7 @@
       "type": "selector",
       "outbounds": [
         "Direct",
-        "Default_Outbound",
-        "HK_Selector"
+        "Default_Outbound"
       ],
       "interrupt_exist_connections": true
     },
@@ -283,7 +212,6 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
-        "HK_Selector",
         "HK_Auto",
         "Direct"
       ],
@@ -296,22 +224,6 @@
         "Direct",
         "Default_Outbound"
       ]
-    },
-    {
-      "tag": "HK_Selector",
-      "type": "selector",
-      "outbounds": [
-        "{all}"
-      ],
-      "filter": [
-        {
-          "action": "include",
-          "keywords": [
-            "🇭🇰|香港|HK|Hong Kong"
-          ]
-        }
-      ],
-      "interrupt_exist_connections": true
     },
     {
       "tag": "HK_Auto",
@@ -493,7 +405,7 @@
         "source_ip_cidr": [
           "192.168.101.206"
         ],
-        "outbound": "HK_Selector"
+        "outbound": "Default_Outbound"
       },
       {
         "rule_set": [
@@ -517,7 +429,7 @@
           "geoip_telegram",
           "geosite_telegram"
         ],
-        "outbound": "Telegram"
+        "outbound": "Default_Outbound"
       },
       {
         "rule_set": "geosite_microsoft",
