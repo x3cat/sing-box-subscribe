@@ -8,25 +8,8 @@
       {
         "tag": "Cloudflare_DoH",
         "address": "https://cloudflare-dns.com/dns-query",
-        "address_resolver": "Ali_DNS",
-        "detour": "Default_Outbound"
-      },
-      {
-        "tag": "Ali_DoH",
-        "address": "https://dns.alidns.com/dns-query",
-        "address_resolver": "Ali_DNS",
-        "detour": "Direct"
-      },
-      {
-        "tag": "Tencent_DoH",
-        "address": "https:///doh.pub/dns-query",
         "address_resolver": "Tencent_DNS",
-        "detour": "Direct"
-      },
-      {
-        "tag": "Ali_DNS",
-        "address": "223.5.5.5",
-        "detour": "Direct"
+        "detour": "Default_Outbound"
       },
       {
         "tag": "Tencent_DNS",
@@ -49,14 +32,10 @@
       },
       {
         "rule_set": "geosite_cn",
-        "server": "Ali_DoH"
-      },
-      {
-        "rule_set": "geosite_cn",
-        "server": "Tencent_DoH"
+        "server": "Tencent_DNS"
       }
     ],
-    "final": "Ali_DoH"
+    "final": "Direct"
   },
   "inbounds": [
     {
@@ -76,7 +55,6 @@
       "outbounds": [
         "Proxy",
         "Proxy_Auto",
-        "HK_Selector",
         "HK_Auto",
         "JP_Auto",
         "KR_Auto",
@@ -127,7 +105,6 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
-        "HK_Selector",
         "HK_Auto",
         "JP_Auto",
         "KR_Auto",
@@ -152,23 +129,6 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
-        "HK_Selector",
-        "HK_Auto",
-        "JP_Auto",
-        "KR_Auto",
-        "TW_Auto",
-        "SG_Auto",
-        "US_Auto",
-        "Direct"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "Telegram",
-      "type": "selector",
-      "outbounds": [
-        "Default_Outbound",
-        "HK_Selector",
         "HK_Auto",
         "JP_Auto",
         "KR_Auto",
@@ -184,7 +144,6 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
-        "HK_Selector",
         "HK_Auto",
         "JP_Auto",
         "KR_Auto",
@@ -201,7 +160,6 @@
       "outbounds": [
         "Direct",
         "Default_Outbound",
-        "HK_Selector",
         "HK_Auto",
         "JP_Auto",
         "KR_Auto",
@@ -217,7 +175,6 @@
       "outbounds": [
         "Direct",
         "Default_Outbound",
-        "HK_Selector",
         "HK_Auto",
         "JP_Auto",
         "KR_Auto",
@@ -232,7 +189,6 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
-        "HK_Selector",
         "HK_Auto",
         "Direct"
       ],
@@ -244,7 +200,7 @@
       "outbounds": [
         "Direct",
         "Default_Outbound",
-        "HK_Selector"
+        "HK_Auto"
       ],
       "interrupt_exist_connections": true
     },
@@ -254,22 +210,6 @@
       "outbounds": [
         "Direct",
         "Default_Outbound"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "HK_Selector",
-      "type": "selector",
-      "outbounds": [
-        "{all}"
-      ],
-      "filter": [
-        {
-          "action": "include",
-          "keywords": [
-            "🇭🇰|香港|HK|Hong Kong"
-          ]
-        }
       ],
       "interrupt_exist_connections": true
     },
@@ -395,7 +335,7 @@
   "route": {
     "auto_detect_interface": true,
     "override_android_vpn": true,
-    "final": "Default_Outbound",
+    "final": "Direct",
     "rules": [
       {
         "inbound": "tun-in",
@@ -444,13 +384,6 @@
         "outbound": "Google"
       },
       {
-        "rule_set": [
-          "geoip_telegram",
-          "geosite_telegram"
-        ],
-        "outbound": "Telegram"
-      },
-      {
         "rule_set": "geosite_microsoft",
         "outbound": "Microsoft"
       },
@@ -469,6 +402,13 @@
       {
         "domain_suffix": ".hk",
         "outbound": "HK_Sites"
+      },
+      {
+        "rule_set": [
+          "geoip_telegram",
+          "geosite_telegram"
+        ],
+        "outbound": "Default_Outbound"
       },
       {
         "rule_set": "geosite_geolocation-!cn",
