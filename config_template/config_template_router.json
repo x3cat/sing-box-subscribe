@@ -36,6 +36,10 @@
       }
     ],
     "rules": [
+      {                                                                   
+        "outbound": "any",                                                
+        "server": "Tencent_DNS"                                           
+      }, 
       {
         "rule_set": "geosite_category-ads",
         "server": "Block_DNS"
