@@ -43,7 +43,11 @@
       {
         "rule_set": "geosite_cn",
         "server": "Tencent_DNS"
-      }
+      },
+      {
+        "rule_set": "geosite_geolocation-!cn",
+        "server": "Cloudflare_DoH"
+      }           
     ],
     "final": "Cloudflare_DoH"
   },
