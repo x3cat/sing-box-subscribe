@@ -143,6 +143,21 @@
       "interrupt_exist_connections": true
     },
     {
+      "tag": "Apple",
+      "type": "selector",
+      "outbounds": [
+        "Direct",
+        "Default_Outbound",
+        "HK_Auto",
+        "JP_Auto",
+        "KR_Auto",
+        "TW_Auto",
+        "SG_Auto",
+        "US_Auto"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
       "tag": "Google",
       "type": "selector",
       "outbounds": [
@@ -174,21 +189,6 @@
     },
     {
       "tag": "Spotify",
-      "type": "selector",
-      "outbounds": [
-        "Direct",
-        "Default_Outbound",
-        "HK_Auto",
-        "JP_Auto",
-        "KR_Auto",
-        "TW_Auto",
-        "SG_Auto",
-        "US_Auto"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "Apple",
       "type": "selector",
       "outbounds": [
         "Direct",
@@ -418,6 +418,10 @@
         "outbound": "AI"
       },
       {
+        "rule_set": "geosite_apple",
+        "outbound": "Apple"
+      },
+      {
         "protocol": "quic",
         "outbound": "QUIC"
       },
@@ -442,10 +446,6 @@
       {
         "rule_set": "geosite_spotify",
         "outbound": "Spotify"
-      },
-      {
-        "rule_set": "geosite_apple",
-        "outbound": "Apple"
       },
       {
         "rule_set": "geoip_hk",
