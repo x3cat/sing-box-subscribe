@@ -35,10 +35,6 @@
       }
     ],
     "rules": [
-      {                                                                   
-        "outbound": "any",                                                
-        "server": "Tencent_DNS"                                           
-      }, 
       {
         "rule_set": "geosite_category-ads",
         "server": "Block_DNS"
@@ -50,7 +46,11 @@
       {
         "rule_set": "geosite_geolocation-!cn",
         "server": "Cloudflare_DoH"
-      }           
+      },
+      {                                                                   
+        "outbound": "any",                                                
+        "server": "Tencent_DNS"                                           
+      }
     ],
     "final": "Cloudflare_DoH"
   },
@@ -421,6 +421,10 @@
         "outbound": "AI"
       },
       {
+        "rule_set": "geosite_apple-cn",
+        "outbound": "Direct"
+      },
+      {
         "rule_set": "geosite_apple",
         "outbound": "Apple"
       },
@@ -583,6 +587,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/apple.srs",
+        "download_detour": "Direct",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_apple-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/apple-cn.srs",
         "download_detour": "Direct",
         "update_interval": "3d"
       },
