@@ -19,40 +19,40 @@
   "dns": {
     "servers": [
       {
-        "tag": "Cloudflare_DoH",
-        "address": "https://cloudflare-dns.com/dns-query",
-        "address_resolver": "Tencent_DNS",
-        "detour": "Default_Outbound"
-      },
+        "tag": "Cloudflare_DoT",
+        "type": "tls",
+        "server": "1.1.1.1"
+      },                        
+      {                         
+        "tag": "Local_DNS",      
+        "type": "local"    
+      },       
       {
         "tag": "Tencent_DNS",
-        "address": "119.29.29.29",
-        "detour": "Direct"
-      },
-      {
-        "tag": "Block_DNS",
-        "address": "rcode://success"
+        "type": "udp",
+        "server": "119.29.29.29"
       }
     ],
     "rules": [
       {
         "rule_set": "geosite_category-ads",
-        "server": "Block_DNS"
+        "action": "reject",
+        "method": "drop"
       },
       {
         "rule_set": "geosite_cn",
-        "server": "Tencent_DNS"
+        "server": "Local_DNS"
       },
       {
         "rule_set": "geosite_geolocation-!cn",
-        "server": "Cloudflare_DoH"
+        "server": "Cloudflare_DoT"
       },
       {                                                                   
         "outbound": "any",                                                
-        "server": "Tencent_DNS"                                           
+        "server": "Local_DNS"                                           
       }
     ],
-    "final": "Cloudflare_DoH"
+    "final": "Cloudflare_DoT"
   },
   "inbounds": [
     {
@@ -408,10 +408,9 @@
         "outbound": "Direct"
       },
       {
-        "source_ip_cidr": [
-          "192.168.101.206"
-        ],
-        "outbound": "Default_Outbound"
+        "protocol": "quic",
+        "action": "reject",
+        "method": "drop"
       },
       {
         "rule_set": [
@@ -426,10 +425,6 @@
       {
         "rule_set": "geosite_apple",
         "outbound": "Apple"
-      },
-      {
-        "protocol": "quic",
-        "outbound": "QUIC"
       },
       {
         "rule_set": [
