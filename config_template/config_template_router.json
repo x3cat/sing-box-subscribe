@@ -21,38 +21,16 @@
       {
         "tag": "Cloudflare_DoT",
         "type": "tls",
-        "server": "1.1.1.1"
-      },                        
-      {                         
-        "tag": "Local_DNS",      
-        "type": "local"    
-      },       
+        "server": "1.1.1.1",
+        "detour": "Default_Outbound"
+      }, 
       {
         "tag": "Tencent_DNS",
         "type": "udp",
-        "server": "119.29.29.29"
+        "server": "119.29.29.29",
+        "detour": "Direct"
       }
-    ],
-    "rules": [
-      {
-        "rule_set": "geosite_category-ads",
-        "action": "reject",
-        "method": "drop"
-      },
-      {
-        "rule_set": "geosite_cn",
-        "server": "Local_DNS"
-      },
-      {
-        "rule_set": "geosite_geolocation-!cn",
-        "server": "Cloudflare_DoT"
-      },
-      {                                                                   
-        "outbound": "any",                                                
-        "server": "Local_DNS"                                           
-      }
-    ],
-    "final": "Cloudflare_DoT"
+    ]
   },
   "inbounds": [
     {
@@ -157,6 +135,21 @@
       "default": "Direct",
       "interrupt_exist_connections": true
     },
+    {                        
+      "tag": "Youtube",           
+      "type": "selector", 
+      "outbounds": [
+        "Default_Outbound",
+        "HK_Auto",         
+        "JP_Auto",                 
+        "KR_Auto",        
+        "TW_Auto",
+        "SG_Auto",
+        "US_Auto",         
+        "Direct"                    
+      ],
+      "interrupt_exist_connections": true
+    },
     {
       "tag": "Google",
       "type": "selector",
@@ -223,14 +216,6 @@
       ],
       "default": "HK_Auto",
       "interrupt_exist_connections": true
-    },
-    {
-      "tag":"QUIC",
-      "type":"selector",
-      "outbounds":[
-        "Direct",
-        "Default_Outbound"
-      ]
     },
     {
       "tag": "HK_Auto",
@@ -363,6 +348,11 @@
   "route": {
     "auto_detect_interface": true,
     "final": "Default_Outbound",
+    "default_domain_resolver": {           
+      "server": "Tencent_DNS",             
+      "rewrite_ttl": 60,                             
+      "client_subnet": "1.1.1.1"           
+    },
     "rules": [
       {
         "inbound": ["tun-in", "mixed-in"],
@@ -425,6 +415,12 @@
       {
         "rule_set": "geosite_apple",
         "outbound": "Apple"
+      },
+      {                                  
+        "rule_set": [                    
+          "geosite_youtube"                               
+        ],                                
+        "outbound": "Youtube"            
       },
       {
         "rule_set": [
@@ -511,6 +507,14 @@
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/google.srs",
         "download_detour": "Direct",
         "update_interval": "3d"
+      },
+      {                                                                                                                              
+        "tag": "geosite_youtube",                                                                                                            
+        "type": "remote",                                                                                                            
+        "format": "binary",                                                                                                          
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/youtube.srs",       
+        "download_detour": "Direct",                                                                                                    
+        "update_interval": "3d"                                                                                                         
       },
       {
         "tag": "geosite_google",
