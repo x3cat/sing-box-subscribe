@@ -422,8 +422,7 @@
       },
       {
         "domain": [
-          "aet.spotify.com",
-          "api-partner.spotify.com"
+          "aet.spotify.com"
         ],
         "action": "reject",
         "method": "drop"

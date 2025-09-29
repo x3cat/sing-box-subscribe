@@ -5,7 +5,7 @@
   "dns": {
     "servers": [                                                                                                                                
       {                                                                                                                                         
-        "tag": "Tencent_DNS",                                                                                                                   
+        "tag": "Tencent_DNS",
         "type": "udp",                                                                                                                          
         "server": "119.29.29.29"                                                                                                                
       },                                                                                                                                        
