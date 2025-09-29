@@ -15,12 +15,12 @@
         "server": "1.1.1.1",                                                                                                                    
         "detour": "Default_Outbound"                                                                                                            
       },                                                                                                                                        
-      {                                                                                                                                         
-        "tag": "Tencent_DoT",                                                                                                                   
-        "type": "tls",                                                                                                                          
-        "server": "dot.pub",                                                                                                                    
+      {
+        "tag": "Tencent_DoT",
+        "type": "tls",
+        "server": "dot.pub",
         "domain_resolver": "Tencent_DNS"                                                                                                        
-      },                                                                                                                                        
+      },
       {                                                                                                                                         
         "tag": "Local_DNS",                                                                                                                     
         "type": "local"                                                                                                                         
