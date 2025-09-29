@@ -17,18 +17,35 @@
     }
   },
   "dns": {
-    "servers": [
-      {
-        "tag": "Cloudflare_DoT",
-        "type": "tls",
-        "server": "1.1.1.1",
-        "detour": "Default_Outbound"
-      }, 
-      {
-        "tag": "Tencent_DNS",
-        "type": "udp",
-        "server": "119.29.29.29"
-      }
+    "servers": [                                                                                                                                
+      {                                                                                                                                         
+        "tag": "Tencent_DNS",                                                                                                                   
+        "type": "udp",                                                                                                                          
+        "server": "119.29.29.29"                                                                                                                
+      },                                                                                                                                        
+      {                                                                                                                                         
+        "tag": "Cloudflare_DoT",                                                                                                                
+        "type": "tls",                                                                                                                          
+        "server": "1.1.1.1",                                                                                                                    
+        "detour": "Default_Outbound"                                                                                                            
+      },                                                                                                                                        
+      {                                                                                                                                         
+        "tag": "Tencent_DoT",                                                                                                                   
+        "type": "tls",                                                                                                                          
+        "server": "dot.pub",                                                                                                                    
+        "domain_resolver": "Tencent_DNS"                                                                                                        
+      },                                                                                                                                        
+      {                                                                                                                                         
+        "tag": "Local_DNS",                                                                                                                     
+        "type": "local"                                                                                                                         
+      }                                                                                                                                         
+    ],                                                                                                                                          
+    "final": "Tencent_DoT",                                                                                                                     
+    "rules": [                                                                                                                                  
+      {                                                                                                                                         
+        "rule_set": "geosite_geolocation-!cn",                                                                                                  
+        "server": "Cloudflare_DoT"                                                                                                              
+      }                                                                                                                                         
     ]
   },
   "inbounds": [
@@ -341,21 +358,25 @@
     },
     {
       "tag": "Direct",
+      "domain_resolver": "Tencent_DoT",
       "type": "direct"
     }
   ],
   "route": {
     "auto_detect_interface": true,
     "final": "Default_Outbound",
-    "default_domain_resolver": {           
-      "server": "Tencent_DNS",             
-      "rewrite_ttl": 60,                             
-      "client_subnet": "1.1.1.1"           
+    "default_domain_resolver": {
+      "server": "Tencent_DoT",
+      "rewrite_ttl": 60
     },
     "rules": [
       {
         "inbound": ["tun-in", "mixed-in"],
         "action": "sniff"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "Direct"
       },
       {
         "type": "logical",
@@ -372,11 +393,9 @@
       },
       {
         "rule_set": "geosite_category-ads",
-        "action": "reject"
-      },
-      {
-        "ip_is_private": true,
-        "outbound": "Direct"
+        "action": "reject",
+        "method": "drop"
+
       },
       {
         "clash_mode": "direct",
@@ -398,6 +417,14 @@
       },
       {
         "protocol": "quic",
+        "action": "reject",
+        "method": "drop"
+      },
+      {
+        "domain": [
+          "aet.spotify.com",
+          "api-partner.spotify.com"
+        ],
         "action": "reject",
         "method": "drop"
       },
