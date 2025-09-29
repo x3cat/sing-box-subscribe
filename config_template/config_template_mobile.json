@@ -1,52 +1,47 @@
 {
   "log": {
-    "level": "info",
-    "timestamp": true
+    "level": "info"
   },
   "dns": {
-    "servers": [
-      {
-        "tag": "Cloudflare_DoH",
-        "address": "https://cloudflare-dns.com/dns-query",
-        "address_resolver": "Tencent_DNS",
-        "detour": "Default_Outbound"
-      },
-      {
-        "tag": "Tencent_DNS",
-        "address": "119.29.29.29",
-        "detour": "Direct"
-      },
-      {
-        "tag": "Block_DNS",
-        "address": "rcode://success"
-      }
-    ],
-    "rules": [
-      {
-        "rule_set": "geosite_category-ads",
-        "server": "Block_DNS"
-      },
-      {
-        "rule_set": "geosite_cn",
-        "server": "Tencent_DNS"
-      },
-      {
-        "rule_set": "geosite_geolocation-!cn",
-        "server": "Cloudflare_DoH"
-      },
-      {                                                                   
-        "outbound": "any",                                                
-        "server": "Tencent_DNS"                                           
-      }
-    ],
-    "final": "Cloudflare_DoH"
+    "servers": [                                                                                                                                
+      {                                                                                                                                         
+        "tag": "Tencent_DNS",                                                                                                                   
+        "type": "udp",                                                                                                                          
+        "server": "119.29.29.29"                                                                                                                
+      },                                                                                                                                        
+      {                                                                                                                                         
+        "tag": "Cloudflare_DoT",                                                                                                                
+        "type": "tls",                                                                                                                          
+        "server": "1.1.1.1",                                                                                                                    
+        "detour": "Default_Outbound"                                                                                                            
+      },                                                                                                                                        
+      {                                                                                                                                         
+        "tag": "Tencent_DoT",                                                                                                                   
+        "type": "tls",                                                                                                                          
+        "server": "dot.pub",                                                                                                                    
+        "domain_resolver": "Tencent_DNS"                                                                                                        
+      },                                                                                                                                        
+      {                                                                                                                                         
+        "tag": "Local_DNS",                                                                                                                     
+        "type": "local"                                                                                                                         
+      }                                                                                                                                         
+    ],                                                                                                                                          
+    "final": "Tencent_DoT",                                                                                                                     
+    "rules": [                                                                                                                                  
+      {                                                                                                                                         
+        "rule_set": "geosite_geolocation-!cn",                                                                                                  
+        "server": "Cloudflare_DoT"                                                                                                              
+      }                                                                                                                                         
+    ]
   },
   "inbounds": [
     {
       "tag": "tun-in",
       "type": "tun",
       "address": [
-        "172.18.0.1/30"      ],
+        "172.18.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
       "auto_route": true,
       "strict_route": true,
       "stack": "system"
@@ -121,12 +116,35 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag":"QUIC",
-      "type":"selector",
-      "outbounds":[
-        "Direct",
-        "Default_Outbound"
-      ]
+      "tag": "Apple",
+      "type": "selector",
+      "outbounds": [
+        "Default_Outbound",
+        "HK_Auto",
+        "JP_Auto",
+        "KR_Auto",
+        "TW_Auto",
+        "SG_Auto",
+        "US_Auto",
+        "Direct"
+      ],
+      "default": "Direct",
+      "interrupt_exist_connections": true
+    },
+    {                        
+      "tag": "Youtube",           
+      "type": "selector", 
+      "outbounds": [
+        "Default_Outbound",
+        "HK_Auto",         
+        "JP_Auto",                 
+        "KR_Auto",        
+        "TW_Auto",
+        "SG_Auto",
+        "US_Auto",         
+        "Direct"                    
+      ],
+      "interrupt_exist_connections": true
     },
     {
       "tag": "Google",
@@ -141,6 +159,7 @@
         "US_Auto",
         "Direct"
       ],
+      "default": "HK_Auto",
       "interrupt_exist_connections": true
     },
     {
@@ -162,29 +181,24 @@
       "tag": "Spotify",
       "type": "selector",
       "outbounds": [
-        "Direct",
         "Default_Outbound",
         "HK_Auto",
         "JP_Auto",
         "KR_Auto",
         "TW_Auto",
         "SG_Auto",
-        "US_Auto"
+        "US_Auto",
+        "Direct"
       ],
+      "default": "Direct",
       "interrupt_exist_connections": true
     },
     {
-      "tag": "Apple",
+      "tag": "CN_Sites",
       "type": "selector",
       "outbounds": [
         "Direct",
-        "Default_Outbound",
-        "HK_Auto",
-        "JP_Auto",
-        "KR_Auto",
-        "TW_Auto",
-        "SG_Auto",
-        "US_Auto"
+        "Default_Outbound"
       ],
       "interrupt_exist_connections": true
     },
@@ -196,25 +210,7 @@
         "HK_Auto",
         "Direct"
       ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "CN_Sites",
-      "type": "selector",
-      "outbounds": [
-        "Direct",
-        "Default_Outbound",
-        "HK_Auto"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "No_Match",
-      "type": "selector",
-      "outbounds": [
-        "Direct",
-        "Default_Outbound"
-      ],
+      "default": "HK_Auto",
       "interrupt_exist_connections": true
     },
     {
@@ -332,17 +328,35 @@
       "interrupt_exist_connections": true
     },
     {
+      "tag": "No_Match",
+      "type": "selector",
+      "outbounds": [
+        "Default_Outbound",
+        "Direct"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
       "tag": "Direct",
+      "domain_resolver": "Tencent_DoT",
       "type": "direct"
     }
   ],
   "route": {
     "auto_detect_interface": true,
-    "final": "Direct",
+    "final": "Default_Outbound",
+    "default_domain_resolver": {
+      "server": "Tencent_DoT",
+      "rewrite_ttl": 60
+    },
     "rules": [
       {
-        "inbound": "tun-in",
+        "inbound": ["tun-in"],
         "action": "sniff"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "Direct"
       },
       {
         "type": "logical",
@@ -359,15 +373,38 @@
       },
       {
         "rule_set": "geosite_category-ads",
-        "action": "reject"
+        "action": "reject",
+        "method": "drop"
       },
       {
-        "ip_is_private": true,
+        "clash_mode": "direct",
+        "outbound": "Direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "Default_Outbound"
+      },
+      {
+        "domain_suffix": [
+          ".myzama.net"
+        ],
         "outbound": "Direct"
       },
       {
         "protocol": "bittorrent",
         "outbound": "Direct"
+      },
+      {
+        "protocol": "quic",
+        "action": "reject",
+        "method": "drop"
+      },
+      {
+        "domain": [
+          "aet.spotify.com"
+        ],
+        "action": "reject",
+        "method": "drop"
       },
       {
         "rule_set": [
@@ -376,8 +413,18 @@
         "outbound": "AI"
       },
       {
-        "protocol": "quic",
-        "outbound": "QUIC"
+        "rule_set": "geosite_apple-cn",
+        "outbound": "Direct"
+      },
+      {
+        "rule_set": "geosite_apple",
+        "outbound": "Apple"
+      },
+      {                                  
+        "rule_set": [                    
+          "geosite_youtube"                               
+        ],                                
+        "outbound": "Youtube"            
       },
       {
         "rule_set": [
@@ -385,6 +432,13 @@
           "geosite_google"
         ],
         "outbound": "Google"
+      },
+      {
+        "rule_set": [
+          "geoip_telegram",
+          "geosite_telegram"
+        ],
+        "outbound": "Default_Outbound"
       },
       {
         "rule_set": "geosite_microsoft",
@@ -395,27 +449,12 @@
         "outbound": "Spotify"
       },
       {
-        "rule_set": "geosite_apple-cn",
-        "outbound": "Direct"
-      },
-      {
-        "rule_set": "geosite_apple",
-        "outbound": "Apple"
-      },
-      {
         "rule_set": "geoip_hk",
         "outbound": "HK_Sites"
       },
       {
         "domain_suffix": ".hk",
         "outbound": "HK_Sites"
-      },
-      {
-        "rule_set": [
-          "geoip_telegram",
-          "geosite_telegram"
-        ],
-        "outbound": "Default_Outbound"
       },
       {
         "rule_set": "geosite_geolocation-!cn",
@@ -472,6 +511,14 @@
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/google.srs",
         "download_detour": "Direct",
         "update_interval": "3d"
+      },
+      {                                                                                                                              
+        "tag": "geosite_youtube",                                                                                                            
+        "type": "remote",                                                                                                            
+        "format": "binary",                                                                                                          
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/youtube.srs",       
+        "download_detour": "Direct",                                                                                                    
+        "update_interval": "3d"                                                                                                         
       },
       {
         "tag": "geosite_google",
@@ -538,18 +585,18 @@
         "update_interval": "3d"
       },
       {
-        "tag": "geosite_apple-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/apple-cn.srs",
-        "download_detour": "Direct",
-        "update_interval": "3d"
-      },
-      {
         "tag": "geosite_apple",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/apple.srs",
+        "download_detour": "Direct",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_apple-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/apple-cn.srs",
         "download_detour": "Direct",
         "update_interval": "3d"
       },
