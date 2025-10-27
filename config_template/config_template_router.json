@@ -405,6 +405,14 @@
         "clash_mode": "global",
         "outbound": "Default_Outbound"
       },
+      {                                              
+        "domain": [                      
+          "ezbk.myzama.net",                         
+          "www.spotify.com",                         
+          "open.spotify.com"           
+        ],                                           
+        "outbound": "Default_Outbound"               
+      },
       {
         "domain_suffix": [
           ".myzama.net"
@@ -417,13 +425,6 @@
       },
       {
         "protocol": "quic",
-        "action": "reject",
-        "method": "drop"
-      },
-      {
-        "domain": [
-          "aet.spotify.com"
-        ],
         "action": "reject",
         "method": "drop"
       },
