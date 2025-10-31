@@ -151,8 +151,8 @@
       "default": "Direct",
       "interrupt_exist_connections": true
     },
-    {                        
-      "tag": "Youtube",           
+    {
+      "tag": "Youtube",
       "type": "selector", 
       "outbounds": [
         "Default_Outbound",
@@ -248,8 +248,8 @@
         }
       ],
       "url": "https://1.1.1.1/favicon.ico",
-      "interval": "10m",
-      "tolerance": 50,
+      "interval": "5m",
+      "tolerance": 20,
       "interrupt_exist_connections": true
     },
     {
