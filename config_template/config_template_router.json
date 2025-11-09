@@ -72,7 +72,7 @@
       "tag": "Default_Outbound",
       "type": "selector",
       "outbounds": [
-        "Default_Outbound",
+        "Proxy_Auto",
         "Proxy",
         "HK_Auto",
         "SG_Auto",
