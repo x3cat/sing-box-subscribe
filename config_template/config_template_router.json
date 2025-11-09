@@ -402,7 +402,11 @@
         "rule_set": "geosite_category-ads",
         "action": "reject",
         "method": "drop"
-
+      },
+      {
+        "protocol": "quic",
+        "action": "reject",
+        "method": "drop"
       },
       {
         "clash_mode": "direct",
@@ -429,11 +433,6 @@
       {
         "protocol": "bittorrent",
         "outbound": "Direct"
-      },
-      {
-        "protocol": "quic",
-        "action": "reject",
-        "method": "drop"
       },
       {
         "rule_set": [
