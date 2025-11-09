@@ -72,14 +72,14 @@
       "tag": "Default_Outbound",
       "type": "selector",
       "outbounds": [
-        "Proxy_Auto",
+        "Default_Outbound",
         "Proxy",
         "HK_Auto",
+        "SG_Auto",
+        "US_Auto",
         "JP_Auto",
         "KR_Auto",
         "TW_Auto",
-        "SG_Auto",
-        "US_Auto",
         "Direct"
       ],
       "interrupt_exist_connections": true
@@ -124,12 +124,13 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
+        "Proxy",
         "HK_Auto",
+        "SG_Auto",
+        "US_Auto",
         "JP_Auto",
         "KR_Auto",
         "TW_Auto",
-        "SG_Auto",
-        "US_Auto",
         "Direct"
       ],
       "default": "US_Auto",
@@ -140,12 +141,13 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
+        "Proxy",
         "HK_Auto",
+        "SG_Auto",
+        "US_Auto",
         "JP_Auto",
         "KR_Auto",
         "TW_Auto",
-        "SG_Auto",
-        "US_Auto",
         "Direct"
       ],
       "default": "Direct",
@@ -156,13 +158,14 @@
       "type": "selector", 
       "outbounds": [
         "Default_Outbound",
-        "HK_Auto",         
-        "JP_Auto",                 
-        "KR_Auto",        
-        "TW_Auto",
+        "Proxy",
+        "HK_Auto",
         "SG_Auto",
-        "US_Auto",         
-        "Direct"                    
+        "US_Auto",
+        "JP_Auto",
+        "KR_Auto",
+        "TW_Auto",
+        "Direct"
       ],
       "interrupt_exist_connections": true
     },
@@ -171,12 +174,13 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
+        "Proxy",
         "HK_Auto",
+        "SG_Auto",
+        "US_Auto",
         "JP_Auto",
         "KR_Auto",
         "TW_Auto",
-        "SG_Auto",
-        "US_Auto",
         "Direct"
       ],
       "default": "HK_Auto",
@@ -187,12 +191,13 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
+        "Proxy",
         "HK_Auto",
+        "SG_Auto",
+        "US_Auto",
         "JP_Auto",
         "KR_Auto",
         "TW_Auto",
-        "SG_Auto",
-        "US_Auto",
         "Direct"
       ],
       "interrupt_exist_connections": true
@@ -202,12 +207,13 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
+        "Proxy",
         "HK_Auto",
+        "SG_Auto",
+        "US_Auto",
         "JP_Auto",
         "KR_Auto",
         "TW_Auto",
-        "SG_Auto",
-        "US_Auto",
         "Direct"
       ],
       "default": "Direct",
@@ -252,6 +258,45 @@
       "tolerance": 20,
       "interrupt_exist_connections": true
     },
+    {
+      "tag": "SG_Auto",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇸🇬|新加坡|SG|Singapore"
+          ]
+        }
+      ],
+      "url": "https://1.1.1.1/favicon.ico",
+      "interval": "10m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "US_Auto",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇺🇸|美国|US|USA|United States"
+          ]
+        }
+      ],
+      "url": "https://1.1.1.1/favicon.ico",
+      "interval": "10m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true
+    },
+
     {
       "tag": "JP_Auto",
       "type": "urltest",
@@ -310,44 +355,6 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "SG_Auto",
-      "type": "urltest",
-      "outbounds": [
-        "{all}"
-      ],
-      "filter": [
-        {
-          "action": "include",
-          "keywords": [
-            "🇸🇬|新加坡|SG|Singapore"
-          ]
-        }
-      ],
-      "url": "https://1.1.1.1/favicon.ico",
-      "interval": "10m",
-      "tolerance": 50,
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "US_Auto",
-      "type": "urltest",
-      "outbounds": [
-        "{all}"
-      ],
-      "filter": [
-        {
-          "action": "include",
-          "keywords": [
-            "🇺🇸|美国|US|USA|United States"
-          ]
-        }
-      ],
-      "url": "https://1.1.1.1/favicon.ico",
-      "interval": "10m",
-      "tolerance": 50,
-      "interrupt_exist_connections": true
-    },
-    {
       "tag": "No_Match",
       "type": "selector",
       "outbounds": [
@@ -358,7 +365,7 @@
     },
     {
       "tag": "Direct",
-      "domain_resolver": "Tencent_DoT",
+      "domain_resolver": "Local_DNS",
       "type": "direct"
     }
   ],
