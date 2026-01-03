@@ -34,11 +34,7 @@
         "type": "tls",                                                                                                                          
         "server": "dot.pub",                                                                                                                    
         "domain_resolver": "Tencent_DNS"                                                                                                        
-      },                                                                                                                                        
-      {                                                                                                                                         
-        "tag": "Local_DNS",                                                                                                                     
-        "type": "local"                                                                                                                         
-      }                                                                                                                                         
+      }                                                                                                                                  
     ],                                                                                                                                          
     "final": "Tencent_DoT",                                                                                                                     
     "rules": [                                                                                                                                  
@@ -365,7 +361,6 @@
     },
     {
       "tag": "Direct",
-      "domain_resolver": "Local_DNS",
       "type": "direct"
     }
   ],
@@ -378,25 +373,15 @@
     },
     "rules": [
       {
-        "inbound": ["tun-in", "mixed-in"],
         "action": "sniff"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
       },
       {
         "ip_is_private": true,
         "outbound": "Direct"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "protocol": "dns"
-          },
-          {
-            "port": 53
-          }
-        ],
-        "action": "hijack-dns"
       },
       {
         "rule_set": "geosite_category-ads",
@@ -418,7 +403,6 @@
       },
       {                                              
         "domain": [                      
-          "ezbk.myzama.net",                         
           "www.spotify.com",                         
           "open.spotify.com"           
         ],                                           
