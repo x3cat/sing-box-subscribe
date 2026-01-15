@@ -97,7 +97,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -251,7 +251,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -270,7 +270,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -289,7 +289,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -309,7 +309,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -328,7 +328,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -347,7 +347,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://1.1.1.1/favicon.ico",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
