@@ -60,6 +60,12 @@
       "stack": "system"
     },
     {
+      "tag": "port-2081-in",     
+      "type": "mixed",         
+      "listen": "::",            
+      "listen_port": 2081        
+    },
+    {
       "tag": "mixed-in",
       "type": "mixed",
       "listen": "::",
@@ -378,9 +384,22 @@
         "action": "sniff"
       },
       {
-        "ip_cidr": [
-          "127.0.0.0/8",
-          "::1/128"
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "domain": [
+              "localhost",
+              "*.localhost",
+              "local"
+            ]
+          },
+          {
+            "ip_cidr": [
+              "127.0.0.0/8",
+              "::1/128"
+            ] 
+          }
         ],
         "outbound": "Direct"
       },
@@ -426,6 +445,22 @@
       {
         "protocol": "bittorrent",
         "outbound": "Direct"
+      },
+      {
+        "inbound": [                                          
+          "port-2081-in"
+        ],
+        "rule_set": [
+          "geoip_cn",
+          "geosite_cn"
+        ],
+        "outbound": "CN_Sites"
+      },
+      {
+        "inbound": [
+          "port-2081-in"                                   
+        ],
+        "outbound": "HK_Auto"
       },
       {
         "rule_set": [
