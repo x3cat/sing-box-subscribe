@@ -142,6 +142,22 @@
       "interrupt_exist_connections": true
     },
     {
+      "tag": "Games",
+      "type": "selector",
+      "outbounds": [
+        "Default_Outbound",
+        "Proxy",
+        "HK_Auto",
+        "SG_Auto",
+        "US_Auto",
+        "JP_Auto",
+        "KR_Auto",
+        "TW_Auto",
+        "Direct"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
       "tag": "Apple",
       "type": "selector",
       "outbounds": [
@@ -469,6 +485,14 @@
         "outbound": "AI"
       },
       {
+        "rule_set": "geosite_category-games@cn",
+        "outbound": "Direct"
+      },
+      {
+        "rule_set": "geosite_category-games-!cn",
+        "outbound": "Games"
+      },
+      {
         "rule_set": "geosite_apple-cn",
         "outbound": "Direct"
       },
@@ -495,6 +519,10 @@
           "geosite_telegram"
         ],
         "outbound": "Default_Outbound"
+      },
+      {
+        "rule_set": "geosite_microsoft@cn",
+        "outbound": "Direct"
       },
       {
         "rule_set": "geosite_microsoft",
@@ -549,6 +577,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-games.srs",
+        "download_detour": "Direct",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_category-games-!cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-games-!cn.srs",
         "download_detour": "Direct",
         "update_interval": "3d"
       },
@@ -661,6 +697,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/microsoft.srs",
+        "download_detour": "Direct",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "geosite_microsoft@cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/microsoft%40cn.srs",
         "download_detour": "Direct",
         "update_interval": "3d"
       },
