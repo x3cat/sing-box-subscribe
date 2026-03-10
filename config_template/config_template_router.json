@@ -447,6 +447,7 @@
       },
       {
         "domain": [
+          "www.apple.com",
           "www.spotify.com",
           "open.spotify.com"           
         ],
