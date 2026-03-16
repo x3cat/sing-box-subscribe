@@ -87,7 +87,7 @@
         "TW_Auto",
         "Direct"
       ],
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "Proxy_Auto",
@@ -106,7 +106,7 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "Proxy",
@@ -122,7 +122,7 @@
           ]
         }
       ],
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "AI",
@@ -139,7 +139,7 @@
         "Direct"
       ],
       "default": "US_Auto",
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "Games",
@@ -155,7 +155,7 @@
         "TW_Auto",
         "Direct"
       ],
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "Apple",
@@ -171,7 +171,7 @@
         "TW_Auto",
         "Direct"
       ],
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "Youtube",
@@ -187,7 +187,7 @@
         "TW_Auto",
         "Direct"
       ],
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "Google",
@@ -203,7 +203,7 @@
         "TW_Auto",
         "Direct"
       ],
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "Microsoft",
@@ -219,7 +219,7 @@
         "TW_Auto",
         "Direct"
       ],
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "Spotify",
@@ -236,7 +236,7 @@
         "Direct"
       ],
       "default": "Direct",
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "CN_Sites",
@@ -246,7 +246,7 @@
         "HK_Auto",
         "Default_Outbound"
       ],
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "HK_Sites",
@@ -257,7 +257,7 @@
         "Direct"
       ],
       "default": "HK_Auto",
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "HK_Auto",
@@ -276,7 +276,7 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "SG_Auto",
@@ -295,7 +295,7 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "US_Auto",
@@ -314,7 +314,7 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
 
     {
@@ -334,7 +334,7 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "KR_Auto",
@@ -353,7 +353,7 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "TW_Auto",
@@ -372,7 +372,7 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "No_Match",
@@ -381,7 +381,7 @@
         "Default_Outbound",
         "Direct"
       ],
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": false
     },
     {
       "tag": "Direct",
