@@ -103,7 +103,7 @@
           ]
         }
       ],
-      "url": "https://cp.cloudflare.com/generate_204",
+      "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -273,7 +273,7 @@
           ]
         }
       ],
-      "url": "https://cp.cloudflare.com/generate_204",
+      "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -292,7 +292,7 @@
           ]
         }
       ],
-      "url": "https://cp.cloudflare.com/generate_204",
+      "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -311,7 +311,7 @@
           ]
         }
       ],
-      "url": "https://cp.cloudflare.com/generate_204",
+      "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -331,7 +331,7 @@
           ]
         }
       ],
-      "url": "https://cp.cloudflare.com/generate_204",
+      "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -350,7 +350,7 @@
           ]
         }
       ],
-      "url": "https://cp.cloudflare.com/generate_204",
+      "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -369,7 +369,7 @@
           ]
         }
       ],
-      "url": "https://cp.cloudflare.com/generate_204",
+      "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": true
@@ -447,7 +447,6 @@
       },
       {
         "domain": [
-          "www.apple.com",
           "www.spotify.com",
           "open.spotify.com"           
         ],
@@ -458,9 +457,6 @@
         "outbound": "Direct"
       },
       {
-        "inbound": [                                          
-          "port-2081-in"
-        ],
         "rule_set": [
           "geoip_cn",
           "geosite_cn"
@@ -480,16 +476,8 @@
         "outbound": "AI"
       },
       {
-        "rule_set": "geosite_category-games@cn",
-        "outbound": "Direct"
-      },
-      {
         "rule_set": "geosite_category-games-!cn",
         "outbound": "Games"
-      },
-      {
-        "rule_set": "geosite_apple-cn",
-        "outbound": "Direct"
       },
       {
         "rule_set": "geosite_apple",
@@ -540,13 +528,6 @@
         "outbound": "Default_Outbound"
       },
       {
-        "rule_set": [
-          "geoip_cn",
-          "geosite_cn"
-        ],
-        "outbound": "CN_Sites"
-      },
-      {
         "outbound": "No_Match"
       }
     ],
@@ -556,22 +537,6 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-ads.srs",
-        "download_detour": "Direct",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "geosite_category-games@cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-games@cn.srs",
-        "download_detour": "Direct",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "geosite_category-games",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/category-games.srs",
         "download_detour": "Direct",
         "update_interval": "3d"
       },
@@ -616,14 +581,6 @@
         "update_interval": "3d"
       },
       {
-        "tag": "geosite_google-gemini",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/google-gemini.srs",
-        "download_detour": "Direct",
-        "update_interval": "3d"
-      },
-      {
         "tag": "geoip_telegram",
         "type": "remote",
         "format": "binary",
@@ -656,34 +613,10 @@
         "update_interval": "3d"
       },
       {
-        "tag": "geosite_openai",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/openai.srs",
-        "download_detour": "Direct",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "geosite_xai",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/xai.srs",
-        "download_detour": "Direct",
-        "update_interval": "3d"
-      },
-      {
         "tag": "geosite_apple",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/apple.srs",
-        "download_detour": "Direct",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "geosite_apple-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/apple-cn.srs",
         "download_detour": "Direct",
         "update_interval": "3d"
       },
