@@ -22,7 +22,7 @@
         "tag": "Cloudflare_DoT",
         "type": "tls",
         "server": "1.1.1.1",
-        "detour": "Default_Outbound"
+        "detour": "Proxy_Auto"
       }, 
       {        
         "tag": "Tencent_DNS",
