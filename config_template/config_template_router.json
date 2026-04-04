@@ -103,7 +103,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://www.apple.com/library/test/success.html",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -273,7 +273,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://www.apple.com/library/test/success.html",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -292,7 +292,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://www.apple.com/library/test/success.html",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -311,7 +311,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://www.apple.com/library/test/success.html",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -331,7 +331,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://www.apple.com/library/test/success.html",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -350,7 +350,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://www.apple.com/library/test/success.html",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -369,7 +369,7 @@
           ]
         }
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://www.apple.com/library/test/success.html",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -457,13 +457,6 @@
         "outbound": "Direct"
       },
       {
-        "rule_set": [
-          "geoip_cn",
-          "geosite_cn"
-        ],
-        "outbound": "CN_Sites"
-      },
-      {
         "inbound": [
           "port-2081-in"                                   
         ],
@@ -504,10 +497,6 @@
         "outbound": "Default_Outbound"
       },
       {
-        "rule_set": "geosite_microsoft@cn",
-        "outbound": "Direct"
-      },
-      {
         "rule_set": "geosite_microsoft",
         "outbound": "Microsoft"
       },
@@ -526,6 +515,13 @@
       {
         "rule_set": "geosite_geolocation-!cn",
         "outbound": "Default_Outbound"
+      },
+      {
+        "rule_set": [
+          "geoip_cn",
+          "geosite_cn"
+        ],
+        "outbound": "CN_Sites"
       },
       {
         "outbound": "No_Match"
