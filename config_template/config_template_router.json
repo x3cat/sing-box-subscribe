@@ -79,6 +79,7 @@
       "outbounds": [
         "Proxy_Auto",
         "Proxy",
+        "Proxy_HK",
         "HK_Auto",
         "SG_Auto",
         "US_Auto",
@@ -103,7 +104,7 @@
           ]
         }
       ],
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://google.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -119,6 +120,22 @@
           "action": "exclude",
           "keywords": [
             "剩余|流量|raffic|有效|时间|到期|xpire|地址|网址|官网|自动|最优|最快"
+          ]
+        }
+      ],
+      "interrupt_exist_connections": false
+    },
+    {
+      "tag": "Proxy_HK",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇭🇰|香港|HK|Hong Kong"
           ]
         }
       ],
@@ -239,16 +256,6 @@
       "interrupt_exist_connections": false
     },
     {
-      "tag": "CN_Sites",
-      "type": "selector",
-      "outbounds": [
-        "Direct",
-        "HK_Auto",
-        "Default_Outbound"
-      ],
-      "interrupt_exist_connections": false
-    },
-    {
       "tag": "HK_Sites",
       "type": "selector",
       "outbounds": [
@@ -257,6 +264,16 @@
         "Direct"
       ],
       "default": "HK_Auto",
+      "interrupt_exist_connections": false
+    },
+    {
+      "tag": "CN_Sites",
+      "type": "selector",
+      "outbounds": [
+        "Direct",
+        "HK_Auto",
+        "Default_Outbound"
+      ],
       "interrupt_exist_connections": false
     },
     {
@@ -273,7 +290,7 @@
           ]
         }
       ],
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://www.hkbn.net/favicon.ico",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -292,7 +309,7 @@
           ]
         }
       ],
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://google.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -311,7 +328,7 @@
           ]
         }
       ],
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://google.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -331,7 +348,7 @@
           ]
         }
       ],
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://google.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -350,7 +367,7 @@
           ]
         }
       ],
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://google.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -369,7 +386,7 @@
           ]
         }
       ],
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://google.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
       "interrupt_exist_connections": false
@@ -460,7 +477,7 @@
         "inbound": [
           "port-2081-in"                                   
         ],
-        "outbound": "HK_Auto"
+        "outbound": "Proxy"
       },
       {
         "rule_set": [
