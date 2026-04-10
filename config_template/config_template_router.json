@@ -164,6 +164,7 @@
       "outbounds": [
         "Default_Outbound",
         "Proxy",
+        "Proxy_HK",
         "HK_Auto",
         "SG_Auto",
         "US_Auto",
@@ -180,6 +181,7 @@
       "outbounds": [
         "Default_Outbound",
         "Proxy",
+        "Proxy_HK",
         "HK_Auto",
         "SG_Auto",
         "US_Auto",
@@ -196,6 +198,7 @@
       "outbounds": [
         "Default_Outbound",
         "Proxy",
+        "Proxy_HK",
         "HK_Auto",
         "SG_Auto",
         "US_Auto",
@@ -212,6 +215,7 @@
       "outbounds": [
         "Default_Outbound",
         "Proxy",
+        "Proxy_HK",
         "HK_Auto",
         "SG_Auto",
         "US_Auto",
@@ -228,6 +232,7 @@
       "outbounds": [
         "Default_Outbound",
         "Proxy",
+        "Proxy_HK",
         "HK_Auto",
         "SG_Auto",
         "US_Auto",
@@ -244,6 +249,7 @@
       "outbounds": [
         "Default_Outbound",
         "Proxy",
+        "Proxy_HK",
         "HK_Auto",
         "SG_Auto",
         "US_Auto",
@@ -260,6 +266,7 @@
       "type": "selector",
       "outbounds": [
         "Default_Outbound",
+        "Proxy_HK",
         "HK_Auto",
         "Direct"
       ],
@@ -271,6 +278,7 @@
       "type": "selector",
       "outbounds": [
         "Direct",
+        "Proxy_HK",
         "HK_Auto",
         "Default_Outbound"
       ],
@@ -477,7 +485,7 @@
         "inbound": [
           "port-2081-in"                                   
         ],
-        "outbound": "Proxy"
+        "outbound": "Proxy_HK"
       },
       {
         "rule_set": [
