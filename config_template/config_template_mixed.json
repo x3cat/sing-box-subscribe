@@ -18,42 +18,46 @@
   },
   "dns": {
     "servers": [
-      {        
+      {
+        "tag": "Local_DNS",
+        "type": "local"
+      },
+      {
         "tag": "Cloudflare_DoT",
         "type": "tls",
         "server": "1.1.1.1",
         "detour": "Proxy_Auto"
-      }, 
-      {        
+      },
+      {
         "tag": "Tencent_DNS",
         "type": "udp",
         "server": "119.29.29.29"
       },
-      {        
+      {
         "tag": "Tencent_DoT",
         "type": "tls",
         "server": "dot.pub",
         "domain_resolver": "Tencent_DNS"
-      } 
+      }
     ],
-    "final": "Cloudflare_DoT",
-    "rules": [ 
+    "final": "Local_DNS",
+    "rules": [
       {
         "rule_set": "geosite_cn",
         "server": "Tencent_DoT"
       },
-      {        
+      {
         "rule_set": "geosite_geolocation-!cn",
         "server": "Cloudflare_DoT"
-      }        
+      }
     ]
   },
   "inbounds": [
     {
-      "tag": "port-2081-in",     
-      "type": "mixed",         
-      "listen": "::",            
-      "listen_port": 2081        
+      "tag": "port-2081-in",
+      "type": "mixed",
+      "listen": "::",
+      "listen_port": 2081
     },
     {
       "tag": "mixed-in",
@@ -184,7 +188,7 @@
     },
     {
       "tag": "Youtube",
-      "type": "selector", 
+      "type": "selector",
       "outbounds": [
         "Default_Outbound",
         "Proxy",
@@ -407,7 +411,7 @@
     "auto_detect_interface": true,
     "final": "Default_Outbound",
     "default_domain_resolver": {
-      "server": "Tencent_DoT",
+      "server": "Local_DNS",
       "rewrite_ttl": 60
     },
     "rules": [
@@ -422,6 +426,7 @@
             "domain": [
               "localhost",
               "*.localhost",
+              "*.home.lan",
               "local"
             ]
           },
@@ -429,7 +434,7 @@
             "ip_cidr": [
               "127.0.0.0/8",
               "::1/128"
-            ] 
+            ]
           }
         ],
         "outbound": "Direct"
@@ -463,12 +468,16 @@
       {
         "domain": [
           "www.spotify.com",
-          "open.spotify.com"           
+          "open.spotify.com"
         ],
         "outbound": "Default_Outbound"
       },
       {
-        "domain_suffix": ".myzama.net",
+        "domain_suffix": [
+          ".hk.myzama.net",
+          ".sg.myzama.net",
+          ".us.myzama.net"
+        ],
         "outbound": "Drect"
       },
       {
@@ -477,7 +486,7 @@
       },
       {
         "inbound": [
-          "port-2081-in"                                   
+          "port-2081-in"
         ],
         "outbound": "Proxy_HK"
       },
@@ -583,7 +592,7 @@
         "tag": "geosite_youtube",
         "type": "remote",
         "format": "binary",
-        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/youtube.srs",       
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/youtube.srs",
         "download_detour": "Direct",
         "update_interval": "3d"
       },

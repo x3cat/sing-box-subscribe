@@ -18,6 +18,10 @@
   },
   "dns": {
     "servers": [
+      {
+        "tag": "Local_DNS",
+        "type": "local"
+      },
       {        
         "tag": "Cloudflare_DoT",
         "type": "tls",
@@ -36,7 +40,7 @@
         "domain_resolver": "Tencent_DNS"
       } 
     ],
-    "final": "Cloudflare_DoT",
+    "final": "Local_DNS",
     "rules": [ 
       {
         "rule_set": "geosite_cn",
@@ -49,14 +53,14 @@
     ]
   },
   "inbounds": [
-    {
-      "tag": "tun-in",
-      "type": "tun",
-      "address": [
-        "172.18.0.1/30"
-      ],
-      "auto_route": true,
-      "strict_route": true,
+    {            
+      "tag": "tun-in",       
+      "type": "tun",   
+      "address": [              
+        "172.18.0.1/30"      
+      ],         
+      "auto_route": true,              
+      "strict_route": true,     
       "stack": "system"
     },
     {
@@ -417,7 +421,7 @@
     "auto_detect_interface": true,
     "final": "Default_Outbound",
     "default_domain_resolver": {
-      "server": "Tencent_DoT",
+      "server": "Local_DNS",
       "rewrite_ttl": 60
     },
     "rules": [
@@ -432,6 +436,7 @@
             "domain": [
               "localhost",
               "*.localhost",
+              "*.home.lan",
               "local"
             ]
           },
@@ -478,12 +483,20 @@
         "outbound": "Default_Outbound"
       },
       {
+        "domain_suffix": [
+          ".hk.myzama.net",
+          ".sg.myzama.net",
+          ".us.myzama.net"
+        ],
+        "outbound": "Drect"
+      },
+      {
         "protocol": "bittorrent",
         "outbound": "Direct"
       },
       {
         "inbound": [
-          "port-2081-in"                                   
+          "port-2081-in"     
         ],
         "outbound": "Proxy_HK"
       },
