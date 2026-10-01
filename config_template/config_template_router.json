@@ -13,7 +13,7 @@
     },
     "cache_file": {
       "enabled": true,
-      "store_rdrc": true
+      "store_dns": true
     }
   },
   "dns": {
