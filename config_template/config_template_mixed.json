@@ -66,17 +66,13 @@
       "tag": "mixed-in",
       "type": "mixed",
       "listen": "::",
-      "listen_port": 2080,
-      "sniff": true,
-      "sniff_override_destination": true
+      "listen_port": 2080
     },
     {
       "tag": "port-2081-in",
       "type": "mixed",
       "listen": "::",
-      "listen_port": 2081,
-      "sniff": true,
-      "sniff_override_destination": true
+      "listen_port": 2081
     }
   ],
   "outbounds": [
@@ -432,7 +428,8 @@
     },
     "rules": [
       {
-        "action": "sniff"
+        "action": "sniff",
+        "override_destination": true
       },
       {
         "protocol": "dns",
